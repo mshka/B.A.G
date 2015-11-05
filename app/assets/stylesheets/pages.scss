@@ -52,14 +52,14 @@ input[type="search"]::-webkit-search-decoration {
   border-radius: 0px;
   display: inline-block;
   padding: 10px;
-  width: 740px;
-  border: 0.5px solid black;
+  width: 100%;
+  border: 0.1px solid black;
   border-radius: 3px;
 }
 
 #search input {
   float: left;
-  width:600px;
+  width:50%;
   height: 55px;
 }
 
@@ -72,16 +72,16 @@ input[type="search"]::-webkit-search-decoration {
 #search input[type="search"] {
   background: #fff;
   color: #42454e;
-  min-width: 600px;
+  min-width: 79%;
   padding: 16px 18px;
 }
 
 #search input[type="submit"] {
   background: #0C090A ;
   color: #777;
-  font-weight: bold;
   margin-left: 10px;
   padding: 16px 18px;
+  min-width: 19%;
   width: 100px;
   height: 53px;
 }
@@ -93,3 +93,5 @@ input[type="search"]::-webkit-search-decoration {
 #search input[type="search"]::-webkit-input-placeholder { color: #42454e; }
 #search input[type="search"]:-moz-placeholder { color: #42454e; }
 #search input[type="search"]:-ms-input-placeholder { color: #42454e; }
+
+
