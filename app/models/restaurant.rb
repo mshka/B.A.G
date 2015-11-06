@@ -12,6 +12,6 @@ class Restaurant < ActiveRecord::Base
   serialize :opening_days_hours, JSON
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 end
