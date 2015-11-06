@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 <p>Welcome <%= @email %>!</p>
 <p>You can confirm your account email through the link below:</p>
+=======
+<p>Welcome to B.A.G <%= @email %>!</p>
+
+<p>Click on the link below to confirm your email account:</p>
+>>>>>>> 3efb2734ef64fb85c529ede93f18bdbbf7c6a37d
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
