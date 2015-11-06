@@ -208,12 +208,16 @@
           </div>
           <br>
           <div class="row">
-          <h4>open 24/7? :
-          <input type="checkbox" id="openallthetimecheck" class="checkbox"/></h4>
-          </div>
+          <h3>Open 24/7?<input type="checkbox" id="openallthetimecheck" class="checkbox"/>
+          </h3>
+
+            <div class="row">
            <h3>Restaurant description</h3>
             <%= f.text_area :description, autofocus: true, class: "form-control",rows: "6",column: "6" %>
+
           </div>
+          <br>
+        </div>
 
 
           <%= f.hidden_field :opening_days_hours %></h4>
