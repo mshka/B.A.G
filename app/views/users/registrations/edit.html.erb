@@ -24,11 +24,21 @@
     <%= f.text_field :last_name, autofocus: true %>
   </div>
 
+   <div class="field form-group">
+            <%= f.label :picture %>
+            <%= f.file_field :picture %>
+          </div>
+
 
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
+  <div class="field">
+    <%= f.label :current_password %><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
 
   <div class="field">
     <%= f.label :password %>

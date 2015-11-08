@@ -1,5 +1,5 @@
-<p>Welcome to B.A.G <%= @email %>!</p>
+<p><h3>Welcome to B.A.G <%= @user.first_name%>!</h3></p>
 
 <p>Click on the link below to confirm your email account:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token),class: "btn btn-primary" %></p>

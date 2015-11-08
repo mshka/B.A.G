@@ -3,233 +3,240 @@
     <div class="panel panel-default">
       <div class="panel panel-body">
 
-  <h2>Set Up Restaurant Details</h2>
-  <% if @restaurant.errors.any? %>
-      <div id="error_explanation">
-        <p class="alert alert-danger alert-sm">
-          <% @restaurant.errors.full_messages.each do |message| %>
+        <h2>Set Up Establishment Account</h2>
+        <% if @restaurant.errors.any? %>
+        <div id="error_explanation">
+          <p class="alert alert-danger alert-sm">
+            <% @restaurant.errors.full_messages.each do |message| %>
             <%= message %><br/>
-          <% end %>
-        </p>
-      </div>
-    <%end%>
-  <div class="col-xs-4">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <% end %>
+          </p>
+        </div>
+        <%end%>
+        <div class="col-xs-4">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
 
-    <div class="form-group">
-      <%= f.label "Restaurant Name:" %><br />
-      <%= f.text_field :name, autofocus: true, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "Address:" %><br />
-      <%= f.text_field :address, autofocus: true, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "Phone number:" %><br />
-      <%= f.phone_field :phone_number, autofocus: true, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "Website:" %><br />
-      <%= f.text_field :website_url, autofocus: true, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "Facebook Page:" %><br />
-      <%= f.text_field :facebook_page, autofocus: true, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label "Twitter handle:" %><br />
-      <%= f.text_field :twitter_handle, autofocus: true, class: "form-control" %>
-    </div>
-
-     <div class="form-group">
-      <%= f.label "Email" %><br />
-      <%= f.email_field :email, autofocus: true, class: "form-control" %>
-    </div>
-
-     <div class="form-group">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br/>
-      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password_confirmation %><br/>
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-    </div>
-
-    <div class="actions">
-    <%= f.submit "Sign up" ,class: "btn btn-primary signUpbtn" %>
-    </div>
-
-     </div>
-
-
-
-    <div id="div" >
-      <div class="col-xs-8 divBorder" >
-
-      <h3>Hours of Operation</h3>
-        <br>
-      <div id="dayBtnsWrapper">
-        <div class="row">
-          <div class="col-sm-1">
-           Week Day
+          <div class="form-group">
+            <%= f.label "Establishment Name:" %><br />
+            <%= f.text_field :name, autofocus: true, class: "form-control" %>
           </div>
-          <div class="col-sm-2">
-           Opening Hour
+
+          <div class="form-group">
+            <%= f.label "Establishment category:" %><br />
+
+            <%= f.select(:category, options_for_select([['Select category'], ['Bar'], ['Restaurant'], ['Night-club'], ['Pub'], ['Other']]), {}, {class: "form-control"}) %></br>
+            <%= f.text_field :category, autofocus: true, class: "form-control", id: "type_category",placeholder:"Specify category" %>
+
+
           </div>
-          <div class="col-sm-2">
-           Closing Hour
+
+          <div class="form-group">
+            <%= f.label "Address:" %><br />
+            <%= f.text_field :address, autofocus: true, class: "form-control" %>
           </div>
-          <div class="col-sm-7">
-           Program of the day
+
+          <div class="form-group">
+            <%= f.label "Phone number:" %><br />
+            <%= f.phone_field :phone_number, autofocus: true, class: "form-control" %>
           </div>
+
+          <div class="form-group">
+            <%= f.label "Website:" %><br />
+            <%= f.text_field :website_url, autofocus: true, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Facebook Page:" %><br />
+            <%= f.text_field :facebook_page, autofocus: true, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Twitter handle:" %><br />
+            <%= f.text_field :twitter_handle, autofocus: true, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Email" %><br />
+            <%= f.email_field :email, autofocus: true, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br/>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password_confirmation %><br/>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Sign up" ,class: "btn btn-primary signUpbtn" %>
+          </div>
+
         </div>
 
-        <br/>
-        <div class="row">
-          <div class="col-sm-1">
 
-            <a class="btn btn-default"  role="button" id="monday">Mon</a>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="monday_opening_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="monday_closing_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-7">
-            <input type="text" id="monday_program" class="form-control" disabled/>
-          </div>
-        </div>
-        <br/>
 
-        <div class="row">
-          <div class="col-sm-1">
-            <a class="btn btn-default" role="button" id="tuesday">Tue</a>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="tuesday_opening_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="tuesday_closing_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-7">
-            <input type="text" id="tuesday_program" class="form-control" disabled/>
-          </div>
-        </div>
-        <br/>
+        <div id="div" >
+          <div class="col-xs-8 divBorder" >
 
-        <div class="row">
-          <div class="col-sm-1">
-            <a class="btn btn-default" role="button" id="wednesday">Wed</a>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="wednesday_opening_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="wednesday_closing_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-7">
-            <input type="text" id="wednesday_program" class="form-control" disabled/>
-          </div>
-        </div>
-        <br/>
+            <h3>Hours of Operation</h3>
+            <br>
+            <div id="dayBtnsWrapper">
+              <div class="row">
+                <div class="col-sm-1">
+                 Week Day
+               </div>
+               <div class="col-sm-2">
+                 Opening Hour
+               </div>
+               <div class="col-sm-2">
+                 Closing Hour
+               </div>
+               <div class="col-sm-7">
+                 Program of the day
+               </div>
+             </div>
 
-        <div class="row">
-          <div class="col-sm-1">
-            <a class="btn btn-default" role="button" id="thursday">Thu</a>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="thursday_opening_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="thursday_closing_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-7">
-            <input type="text" id="thursday_program" class="form-control" disabled/>
-          </div>
-        </div>
-        <br/>
+             <br/>
+             <div class="row">
+              <div class="col-sm-1">
 
-        <div class="row">
-          <div class="col-sm-1">
-            <a class="btn btn-default" role="button" id="friday" >Fri</a>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="friday_opening_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="friday_closing_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-7">
-            <input type="text" id="friday_program" class="form-control" disabled/>
-          </div>
-        </div>
-        <br/>
-
-        <div class="row">
-          <div class="col-sm-1">
-            <a class="btn btn-default" role="button" id="saturday" >Sat</a>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="saturday_opening_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="saturday_closing_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-7">
-            <input type="text" id="saturday_program" class="form-control" disabled/>
-          </div>
-        </div>
-        <br/>
-
-        <div class="row">
-          <div class="col-sm-1">
-            <a class="btn btn-default" role="button" id="sunday">Sun</a>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="sunday_opening_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-2">
-            <input type="time" id="sunday_closing_hour"  class="form-control" disabled/>
-          </div>
-          <div class="col-sm-7">
-            <input type="text" id="sunday_program" class="form-control" disabled/>
-          </div>
-          </div>
-          <br>
-          <div class="row">
-          <h3>Open 24/7?<input type="checkbox" id="openallthetimecheck" class="checkbox"/>
-          </h3>
+                <a class="btn btn-default"  role="button" id="monday">Mon</a>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="monday_opening_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="monday_closing_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-7">
+                <input type="text" id="monday_program" class="form-control" disabled/>
+              </div>
+            </div>
+            <br/>
 
             <div class="row">
-           <h3>Restaurant description</h3>
-            <%= f.text_area :description, autofocus: true, class: "form-control",rows: "6",column: "6" %>
+              <div class="col-sm-1">
+                <a class="btn btn-default" role="button" id="tuesday">Tue</a>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="tuesday_opening_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="tuesday_closing_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-7">
+                <input type="text" id="tuesday_program" class="form-control" disabled/>
+              </div>
+            </div>
+            <br/>
 
-          </div>
-          <br>
-        </div>
+            <div class="row">
+              <div class="col-sm-1">
+                <a class="btn btn-default" role="button" id="wednesday">Wed</a>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="wednesday_opening_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="wednesday_closing_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-7">
+                <input type="text" id="wednesday_program" class="form-control" disabled/>
+              </div>
+            </div>
+            <br/>
+
+            <div class="row">
+              <div class="col-sm-1">
+                <a class="btn btn-default" role="button" id="thursday">Thu</a>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="thursday_opening_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="thursday_closing_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-7">
+                <input type="text" id="thursday_program" class="form-control" disabled/>
+              </div>
+            </div>
+            <br/>
+
+            <div class="row">
+              <div class="col-sm-1">
+                <a class="btn btn-default" role="button" id="friday" >Fri</a>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="friday_opening_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="friday_closing_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-7">
+                <input type="text" id="friday_program" class="form-control" disabled/>
+              </div>
+            </div>
+            <br/>
+
+            <div class="row">
+              <div class="col-sm-1">
+                <a class="btn btn-default" role="button" id="saturday" >Sat</a>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="saturday_opening_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="saturday_closing_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-7">
+                <input type="text" id="saturday_program" class="form-control" disabled/>
+              </div>
+            </div>
+            <br/>
+
+            <div class="row">
+              <div class="col-sm-1">
+                <a class="btn btn-default" role="button" id="sunday">Sun</a>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="sunday_opening_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-2">
+                <input type="time" id="sunday_closing_hour"  class="form-control" disabled/>
+              </div>
+              <div class="col-sm-7">
+                <input type="text" id="sunday_program" class="form-control" disabled/>
+              </div>
+            </div>
+            <br>
+            <span class="btn btn-default" role="button" id="openallthetimecheck">24/7</span>
+            <%= f.hidden_field :opening_days_hours %>
 
 
-          <%= f.hidden_field :opening_days_hours %></h4>
-          </div>
+            <div class="form-group">
+             <h3>Establishment description:</h3>
+             <%= f.text_area :description, autofocus: true, class: "form-control",rows: "6",column: "2" %>
+
+           </div>
+           <br>
+
+
+         </div>
        </div>
-       </div>
-  <% end %>
+     </div>
+     <% end %>
 
-  <%= render "restaurants/shared/links" %>
+     <%= render "restaurants/shared/links" %>
 
-</div>
-</div>
+   </div>
+ </div>
 </div>
 </div>
 
