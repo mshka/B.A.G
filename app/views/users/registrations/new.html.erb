@@ -24,6 +24,12 @@
             <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
           </div>
 
+          <div class="field form-group" id="image_upload_field">
+            <%= f.label "Profile picture" %>
+            <%= f.file_field :picture %>
+          </div>
+
+
 
           <div class="field form-group">
             <%= f.label :email %><br />

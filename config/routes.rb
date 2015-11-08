@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'pages/my_profile', as: :my_profile
+  get '/search', to: 'pages#search'
+
   root 'pages#home'
 
   devise_for :restaurants

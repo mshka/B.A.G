@@ -1,5 +1,18 @@
 $(document).ready(function(){
-    var disabled_button = false
+    var disabled_button = false;
+
+    $("#type_category").hide()
+    $("#restaurant_category").on("change",function(){
+      if($(this).val() == "Other"){
+      $("#type_category").slideDown()
+      $("#type_category").val("")
+      }else{
+      $("#type_category").slideUp()
+      }
+    });
+
+
+
       function formatHourData(){
         jsonData =  {  "monday": {},
                       "tuesday": {},
@@ -58,7 +71,8 @@ $(document).ready(function(){
         $(this).unbind('submit').submit();
       });
 
-      $('#openallthetimecheck').on("change", function(){
+      $('#openallthetimecheck').on("click", function(){
+        $(this).toggleClass("btn-primary");
         keys =  {  "monday": {},
                       "tuesday": {},
                       "wednesday": {},
@@ -67,16 +81,16 @@ $(document).ready(function(){
                       "saturday": {},
                       "sunday" :{},
                     };
-        if ($(this).prop('checked') == true){
+        if ($(this).attr('class')=== "btn btn-default btn-primary"){
           $.each(keys, function(key){
             $('#'+key).removeClass();
             $('#'+key).addClass('btn btn-primary');
             disabled_button = true
             string = "#" + key + "_opening_hour"
-            $(string).val("6:00")
+            $(string).val('06:00')
             $(string).prop('disabled', true);
             string = "#" + key + "_closing_hour"
-            $(string).val("5:59")
+            $(string).val("05:59")
             $(string).prop('disabled', true);
             string = "#" + key + "_program"
             $(string).prop('disabled', false);

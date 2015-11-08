@@ -27,6 +27,11 @@ gem 'devise'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'postmark-rails'
 gem 'figaro'
+gem 'premailer-rails'
+gem 'nokogiri'
+gem 'aws-sdk', '< 2.0'
+gem 'paperclip'
+gem 'spinjs-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

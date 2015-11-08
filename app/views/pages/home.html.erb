@@ -1,26 +1,24 @@
 <div class="container">
-<div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
 
+      <div id="search">
 
+        <form action="/search" method="get">
 
-  <div id="search">
+          <fieldset class="clearfix">
 
-      <form >
+            <input type="search" name="search" value="What are you looking for?" onBlur="if(this.value=='')this.value='What are you looking for?'" onFocus="if(this.value=='What are you looking for?')this.value='' "> <!-- JS because of IE support; better: placeholder="What are you looking for?" -->
+            <input type="submit" value="Search" class="button">
 
-        <fieldset class="clearfix">
+          </fieldset>
 
-          <input type="search" name="search" value="What are you looking for?" onBlur="if(this.value=='')this.value='What are you looking for?'" onFocus="if(this.value=='What are you looking for?')this.value='' "> <!-- JS because of IE support; better: placeholder="What are you looking for?" -->
-          <input type="submit" value="Search" class="button">
+        </form>
 
-        </fieldset>
+      </div> <!-- end search -->
 
-      </form>
-
-    </div> <!-- end search -->
-
-</div>
-</div>
+    </div>
+  </div>
 </div>
 
 
