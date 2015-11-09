@@ -3,7 +3,9 @@
       <div class="input-group">
         <input id="search" type="search" placeholder="What are you looking for?" class="form-control">
         <span class="input-group-btn">
-          <button type="submit" id="btnSearch" class ="btn btn-default">Search</button>
+          <form action="/search" method="get">
+            <button type="submit" id="btnSearch" class ="btn btn-primary">Search</button>
+          </form>
         </span>
       </div>
       <!-- <form action="/search" method="get">
