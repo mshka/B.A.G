@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   has_attached_file :picture,
     styles: { medium: "100x100>", thumb: "32x32>" },
     convert_options: { thumb: "-quality 50 -strip",
-                      original: "-quality 50 -strip" }
+                      original: "-quality 50 -strip" },
+    default_url: "default-picture_:style.png"
+
 
   validates_attachment_content_type :picture,
     content_type: /\Aimage\/.*\z/
