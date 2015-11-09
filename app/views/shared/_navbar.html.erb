@@ -14,14 +14,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-        <% if image_tag current_user.picture.url == "/pictures/original/missing.png"%>
-        <li><%= image_tag "default-picture.png",class: "img-circle",id: "propic_navbar",width: 32, height: 32 %></li>
-        <% else %>
-        <li><%= image_tag current_user.picture.url(:thumb),class: "img-circle",id: "propic_navbar" %></li>
-
-        <% end %>
+          <% if current_user.picture.url == "/pictures/original/missing.png"%>
+            <li><%= image_tag "default-picture.png",class: "img-circle",id: "propic_navbar",width: 32, height: 32 %></li>
+          <% else %>
+            <li><%= image_tag current_user.picture.url(:thumb),class: "img-circle",id: "propic_navbar" %></li>
+          <% end %>
         <li><%= link_to current_user.first_name.capitalize, my_profile_path %></li>
-        <li><%= link_to "Logout", destroy_user_session_path %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 
         <li role="separator" class="divider"></li>
         <% elsif restaurant_signed_in? %>
