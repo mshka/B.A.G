@@ -4,15 +4,29 @@
 
 
 body {
-  padding-top: 100px;
   background: #F4F4F4;
+  overflow-x: hidden;
 }
 
-.pages_home {
+.home, .restaurant-pages {
   padding-top: 0px;
-  .alert {
-    margin-top: 70px;
-  }
+}
+
+.restaurant-pages{
+  margin-left: 300px;
+  transition: all 0.3s ease;
+}
+
+.restaurant-pages.toggled {
+  margin-left: 0px;
+}
+
+.user-pages {
+  padding-top: 100px;
+}
+
+#restair {
+  padding-top: 100px;
 }
 
 .bg-picture{

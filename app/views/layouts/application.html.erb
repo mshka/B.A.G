@@ -7,14 +7,18 @@
 
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= params[:controller]%>_<%= params[:action]%>">
+<body>
   <% if restaurant_signed_in? %>
     <%= render "shared/side_bar" %>
+    <div class="restaurant-pages">
+      <%= yield %>
+    </div>
   <% else %>
     <%= render "shared/navbar"%>
+    <div class="<%= params[:action] == "home" ? 'home' : 'user-pages' %>">
+      <%= yield %>
+    </div>
   <%end%>
   <%= render 'shared/flashes' %>
-
-  <%= yield %>
 </body>
 </html>

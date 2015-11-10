@@ -23,23 +23,15 @@
           <i class="fa fa-pencil"></i> Edit your place
         <% end %>
       </li>
-      <li>
-        <%= link_to  "#", class: "btn btn-danger"  do %>
+      <li class="nav-btn" >
+        <%= link_to  "#" do %>
           <i class="fa fa-plus"></i> Add an event
         <% end %>
       </li>
-      <li>
-          <%= link_to "Logout", destroy_restaurant_session_path, method: :delete %>
-      </li>
-      <li>
-        ----------
-      </li>
-      <li>
-          Services
-      </li>
-      <li>
-          Contact
-      </li>
+    </ul>
+
+    <ul class="sidebar-secondary-links list-unstyled">
+      <li><%= link_to "Logout", destroy_restaurant_session_path, method: :delete %></li>
     </ul>
   </div>
   <!-- /#sidebar-wrapper -->
