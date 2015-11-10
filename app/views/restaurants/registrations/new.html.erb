@@ -1,6 +1,8 @@
 <div class="container">
+
   <div class="row">
     <div class="panel panel-default">
+
       <div class="panel panel-body">
 
         <h2>Set Up Establishment Account</h2>
@@ -24,16 +26,23 @@
 
           <div class="form-group">
             <%= f.label "Establishment category:" %><br />
-
-            <%= f.select(:category, options_for_select([['Select category'], ['Bar'], ['Restaurant'], ['Night-club'], ['Pub'], ['Other']]), {}, {class: "form-control"}) %></br>
-            <%= f.text_field :category, autofocus: true, class: "form-control", id: "type_category",placeholder:"Specify category" %>
-
-
+            <select id="main-category" class="form-control">
+              <%Restaurant::CATEGORIES.each do |category| %>
+                <option value=""><%=category%></option>
+              <% end %>
+            </select>
+            <input type="text" name="restaurant[category]" id="type_category" placeholder="Custom category" class="form-control">
           </div>
+
 
           <div class="form-group">
             <%= f.label "Address:" %><br />
             <%= f.text_field :address, autofocus: true, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Cover picture:" %><br />
+            <%= f.file_field :cover_picture, autofocus: true %>
           </div>
 
           <div class="form-group">
@@ -74,12 +83,14 @@
             <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
           </div>
 
-          <div class="actions">
-            <%= f.submit "Sign up" ,class: "btn btn-primary signUpbtn" %>
+
+          <div class="actions" id="submit-sign-up">
+            <%= f.submit "Sign up" ,class: "btn btn-primary signUpbtn" %><br/>
+            <i class="fa fa-spinner fa-pulse fa-lg" id="new_restaurant_sign_up"></i>
           </div>
 
-        </div>
 
+        </div>
 
 
         <div id="div" >
@@ -227,16 +238,20 @@
            </div>
            <br>
 
-
          </div>
        </div>
      </div>
+
      <% end %>
 
      <%= render "restaurants/shared/links" %>
 
    </div>
+
  </div>
 </div>
 </div>
+
+
+
 

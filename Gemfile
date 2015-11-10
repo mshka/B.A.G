@@ -33,6 +33,7 @@ gem 'nokogiri'
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip'
 gem 'spinjs-rails'
+gem 'font-awesome-sass'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

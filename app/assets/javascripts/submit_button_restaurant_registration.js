@@ -1,13 +1,17 @@
 $(document).ready(function(){
     var disabled_button = false;
 
-    $("#type_category").hide()
-    $("#restaurant_category").on("change",function(){
-      if($(this).val() == "Other"){
-      $("#type_category").slideDown()
-      $("#type_category").val("")
+    $('#new_restaurant_sign_up').hide();
+
+    if($("#main-category").find(":selected").text() != "Other"){
+      $("#type_category").val("").hide();
+    }
+
+    $("#main-category").on("change",function(){
+      if($(this).find(":selected").text() == "Other"){
+        $("#type_category").val("").slideDown();
       }else{
-      $("#type_category").slideUp()
+        $("#type_category").val($(this).find(":selected").text()).slideUp();
       }
     });
 
@@ -66,6 +70,9 @@ $(document).ready(function(){
       });
 
       $('#new_restaurant').on("submit", function(event){
+        $('#new_restaurant_sign_up').show();
+
+        $('#new_restaurant_sign_up').slideDown();
         event.preventDefault();
         formatHourData();
         $(this).unbind('submit').submit();
