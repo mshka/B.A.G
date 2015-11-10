@@ -1,0 +1,49 @@
+<div id="wrapper">
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <div class="sidebar-logo">
+      <%= link_to my_establishment_profile_path, class: "navbar-brand" do%>
+        <%= image_tag "logo.png" %>
+      <% end %>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li>
+          <%= link_to "#"  do %>
+            <i class="fa fa-book"></i> Bookings
+          <% end %>
+      </li>
+      <li>
+         <%= link_to "#"  do %>
+           <i class="fa fa-star"></i> Reviews
+         <% end %>
+      </li>
+      <li>
+        <%= link_to restaurant_edit_path  do %>
+          <i class="fa fa-pencil"></i> Edit your place
+        <% end %>
+      </li>
+      <li>
+        <%= link_to  "#", class: "btn btn-danger"  do %>
+          <i class="fa fa-plus"></i> Add an event
+        <% end %>
+      </li>
+      <li>
+          <%= link_to "Logout", destroy_restaurant_session_path, method: :delete %>
+      </li>
+      <li>
+        ----------
+      </li>
+      <li>
+          Services
+      </li>
+      <li>
+          Contact
+      </li>
+    </ul>
+  </div>
+  <!-- /#sidebar-wrapper -->
+  <span  id="menu-toggle"><%= image_tag "toggle_button_back.png"%></span>
+  <!-- Page Content -->
+  <!-- /#page-content-wrapper -->
+</div>

@@ -2,20 +2,18 @@
   <div class="row">
     <div class="panel panel-default">
       <div class="panel panel-body">
-        <h2>Edit <%= resource_name.to_s.humanize %></h2>
-        <% if @restaurant.errors.any? %>
+        <h2>Edit <%= current_restaurant.name %></h2>
+        <% if current_restaurant.errors.any? %>
         <div id="error_explanation">
           <p class="alert alert-danger alert-sm">
-            <% @restaurant.errors.full_messages.each do |message| %>
+            <% current_restaurant.errors.full_messages.each do |message| %>
             <%= message %><br/>
             <% end %>
           </p>
         </div>
         <%end%>
         <div class="col-xs-4">
-         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-
-
+         <%= form_for(current_restaurant, url: restaurant_update_path) do |f| %>
           <div class="form-group">
             <%= f.label "Establishment Name:" %><br />
             <%= f.text_field :name, autofocus: true, class: "form-control" %>
@@ -23,15 +21,23 @@
 
           <div class="form-group">
             <%= f.label "Establishment category:" %><br />
-            <%if resource.category == "Other"%>
-              <%= f.select(:category, options_for_select(Restaurant::CATEGORIES), {}, {class: "form-control",value: "Other", prompt: "Select a category"}) %></br>
-              <%= f.text_field :category, autofocus: true, class: "form-control", id: "type_category",placeholder:"Specify category", value: resource.category %>
+            <%if Restaurant::CATEGORIES.include? current_restaurant.category %>
+              <select id="main-category" class="form-control">
+                <%Restaurant::CATEGORIES.each do |category| %>
+                  <option value="" <%="selected" if category == current_restaurant.category %>><%=category%></option>
+                <% end %>
+              </select>
+              <input type="text" name="restaurant[category]" id="type_category" placeholder="Custom category" class="form-control">
             <% else %>
-              <%= f.select(:category, options_for_select(Restaurant::CATEGORIES), {}, {class: "form-control",value: resource.category, prompt: "Select a category"}) %></br>
-              <%= f.text_field :category, autofocus: true, class: "form-control", id: "type_category",placeholder:"Specify category"%>
+            <div id="test">
+              <select id="main-category" class="form-control">
+                <%Restaurant::CATEGORIES.each do |category| %>
+                  <option value="" <%="selected" if category == "Other" %>><%=category%></option>
+                <% end %>
+              </select>
+              <input type="text" id="type_category" placeholder="Custom category" class="form-control" name="restaurant[category]" value="<%= current_restaurant.category %>">
+            </div>
             <% end %>
-
-
           </div>
 
           <div class="form-group">
@@ -62,29 +68,6 @@
           <div class="form-group">
             <%= f.label "Twitter handle:" %><br />
             <%= f.text_field :twitter_handle, autofocus: true, class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label "Email" %><br />
-            <%= f.email_field :email, autofocus: true, class: "form-control" %>
-          </div>
-
-          <div class="field">
-            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-            <%= f.password_field :current_password, autocomplete: "off" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :password %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br/>
-            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :password_confirmation %><br/>
-            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
           </div>
 
 
@@ -248,7 +231,7 @@
 
      <% end %>
 
-     <%= render "restaurants/shared/links" %>
+
 
    </div>
 

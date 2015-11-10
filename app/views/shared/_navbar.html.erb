@@ -8,7 +8,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "Book And Go", root_path, class: "navbar-brand" %>
+
+      <%= link_to my_establishment_profile_path, class: "navbar-brand" do%>
+        <%= image_tag "logo.png", style: "width: 50px;" %>
+      <% end %>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -20,8 +23,8 @@
 
         <li role="separator" class="divider"></li>
         <% elsif restaurant_signed_in? %>
-
-        <li><%= link_to "Logout", destroy_restaurant_session_path, method: :delete %></li>
+        <li><%= image_tag current_restaurant.cover_picture.url(:thumb),class: "img-circle",id: "propic_navbar" %></li>
+        <li></li>
         <% else %>
         <li><%= link_to "Sign Up", new_user_registration_path %></li>
         <li><%= link_to "Log in", new_user_session_path %></li>

@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
 
   get 'pages/my_profile', as: :my_profile
+  get 'pages/establishment_home_porfile', as: :my_establishment_profile
   get '/search', to: 'pages#search'
+
 
   root 'pages#home'
 
   devise_for :restaurants
   devise_for :users
+
+  resources :restaurants, only: [:show, :index]
+
+
+  get "restaurant/edit"
+  patch "restaurant/update"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -4,10 +4,16 @@
   <title>BAG</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render "shared/navbar" %>
+  <% if restaurant_signed_in? %>
+    <%= render "shared/side_bar" %>
+  <% else %>
+    <%= render "shared/navbar" %>
+  <%end%>
+
 <div class="container">
 
 <p class="notice"><%= notice %></p>
