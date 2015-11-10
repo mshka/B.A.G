@@ -70,9 +70,19 @@
             <%= f.text_field :twitter_handle, autofocus: true, class: "form-control" %>
           </div>
 
+          <div class="form-group">
+            <%= f.label "Upload a menu:" %><br />
+            <%= f.file_field :menu_picture, autofocus: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Add photos of your Place:" %><br />
+            <%= f.file_field :item_picture, autofocus: true %>
+          </div>
+
 
           <div class="actions" id="submit-sign-up">
-            <%= f.submit "class" ,Save: "btn btn-primary signUpbtn" %><br/>
+            <%= f.submit "Save" ,class: "btn btn-primary signUpbtn" %><br/>
             <i class="fa fa-spinner fa-pulse fa-lg" id="new_restaurant_sign_up"></i>
           </div>
 

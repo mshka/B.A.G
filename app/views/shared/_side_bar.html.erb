@@ -9,6 +9,11 @@
 
     <ul class="sidebar-nav">
       <li>
+          <%= link_to restaurant_path(current_restaurant.id)  do %>
+            <i class="fa fa-user"></i> My profile
+          <% end %>
+      </li>
+      <li>
           <%= link_to "#"  do %>
             <i class="fa fa-book"></i> Bookings
           <% end %>

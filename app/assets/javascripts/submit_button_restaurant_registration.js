@@ -1,6 +1,35 @@
 $(document).ready(function(){
     var disabled_button = false;
 
+    if ( $('#restaurant_opening_days_hours').val() != "" ){
+      valuedata =  $('#restaurant_opening_days_hours').val();
+      valuedata = JSON.parse(valuedata);
+      $.each(valuedata, function(key){
+            button = "#" + key
+            opening_hour = "#" + key + "_opening_hour"
+            closing_hour = "#" + key + "_closing_hour"
+            program = "#" + key + "_program"
+            if (valuedata[key]["open"] == "true"){
+              $(button).prop('disabled', false);
+              $(opening_hour).prop('disabled', false);
+              $(closing_hour).prop('disabled', false);
+              $(program).prop('disabled', false);
+
+              $(button).removeClass();
+              $(button).addClass('btn btn-default btn-primary');
+              $(opening_hour).val(valuedata[key]["opening_hour"])
+              $(closing_hour).val(valuedata[key]["closing_hour"])
+              $(program).val(valuedata[key]["program"])
+            }
+
+      });
+
+    }
+
+
+
+
+
     $('#new_restaurant_sign_up').hide();
 
     if($("#main-category").find(":selected").text() != "Other"){
@@ -33,7 +62,7 @@ $(document).ready(function(){
             closing_hour = "#" + $('#'+key).attr('id') + "_closing_hour"
             program = "#" + $('#'+key).attr('id') + "_program"
             jsonData[key]["open"] ="true"
-            jsonData[key]["opening_hour"] = $(closing_hour).val()
+            jsonData[key]["opening_hour"] = $(opening_hour).val()
             jsonData[key]["closing_hour"] = $(closing_hour).val()
             jsonData[key]["program"] = $(program).val()
 
@@ -70,6 +99,15 @@ $(document).ready(function(){
       });
 
       $('#new_restaurant').on("submit", function(event){
+        $('#new_restaurant_sign_up').show();
+
+        $('#new_restaurant_sign_up').slideDown();
+        event.preventDefault();
+        formatHourData();
+        $(this).unbind('submit').submit();
+      });
+
+      $('#edit_restaurant_1').on("submit", function(event){
         $('#new_restaurant_sign_up').show();
 
         $('#new_restaurant_sign_up').slideDown();

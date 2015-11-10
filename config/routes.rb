@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'restaurants/show'
+
   get 'pages/my_profile', as: :my_profile
   get 'pages/establishment_home_porfile', as: :my_establishment_profile
   get '/search', to: 'pages#search'
