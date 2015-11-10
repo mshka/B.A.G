@@ -1,45 +1,61 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+<nav class="navbar-wagon navbar-wagon-fixed <%= "navbar-wagon-transparent" if params[:action] == "home" %>">
+  <div class="container navbar-wagon-container">
 
-      <%= link_to my_establishment_profile_path, class: "navbar-brand" do%>
-        <%= image_tag "logo.png", style: "width: 50px;" %>
-      <% end %>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li><%= image_tag current_user.picture.url(:thumb),class: "img-circle",id: "propic_navbar" %></li>
-        <li><%= link_to current_user.first_name.capitalize, my_profile_path %></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    <%= link_to root_path do %>
+      <%= image_tag "logo.png", class: "navbar-wagon-logo" %>
+    <% end %>
 
-        <li role="separator" class="divider"></li>
-        <% elsif restaurant_signed_in? %>
-        <li><%= image_tag current_restaurant.cover_picture.url(:thumb),class: "img-circle",id: "propic_navbar" %></li>
-        <li></li>
-        <% else %>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <li><%= link_to "Log in", new_user_session_path %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Establishment Account", new_restaurant_session_path %></li>
+    <div class="navbar-wagon-pusher"></div>
 
-            <li><%= link_to "About us", new_user_session_path %></li>
-            <li><%= link_to "Contact us", new_user_session_path %></li>
 
+    <% if user_signed_in? %>
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <%= image_tag current_user.picture.url(:thumb), class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to my_profile_path do %>
+                <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
+              <% end %>
+            </li>
           </ul>
-        </li>
-        <% end %>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    <% elsif restaurant_signed_in? %>
+      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link hidden-xs" do %>
+        <div class="icon-badge-container">
+          <i class="fa fa-envelope-o"></i>
+          <div class="icon-badge icon-badge-blue">5</div>
+        </div>
+      <% end %>
+      <hr>
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <%= image_tag current_restaurant.cover_picture.url(:thumb), class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to "#" do %>
+                <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+    <% else %>
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <hr>
+      <%= link_to t(".top_call_to_action", default: "Restaurant login"), new_restaurant_session_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+    <% end %>
+  </div>
 </nav>

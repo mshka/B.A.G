@@ -10,16 +10,15 @@
 <body>
   <% if restaurant_signed_in? %>
     <%= render "shared/side_bar" %>
+    <div class="restaurant-pages">
+      <%= yield %>
+    </div>
   <% else %>
-    <%= render "shared/navbar" %>
+    <%= render "shared/navbar"%>
+    <div class="<%= params[:action] == "home" ? 'home' : 'user-pages' %>">
+      <%= yield %>
+    </div>
   <%end%>
-
-<div class="container">
-
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<%= yield %>
-</div>
+  <%= render 'shared/flashes' %>
 </body>
 </html>
