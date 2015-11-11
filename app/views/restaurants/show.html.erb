@@ -1,0 +1,109 @@
+<div class="container">
+  <!-- image, name and category -->
+  <div class="row">
+    <div class="col-xs-3" >
+      <div id="restaurant_div_pp">
+      <button class="picture_link">
+        <%= image_tag @restaurant.cover_picture.url(:medium) %>
+      </button>
+    </div>
+      <h3>Phone number:</h3>
+      <%= @restaurant.phone_number%>
+      <hr>
+      <h3>Location:</h3>
+      <%= @restaurant.address%><br/><br/>
+      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=200x200&sensor=false&maptype=roadmap&markers=color:red|#{@restaurant.address}" %>
+      <hr>
+      <%= link_to @restaurant.facebook_page, target: "_blank" do %>
+        <span class="fa fa-facebook"> facebook</span>
+      <% end %>
+      <br/><br/>
+      <%= link_to @restaurant.twitter_handle, target: "_blank" do %>
+        <span class="fa fa-twitter"> twitter</span>
+      <% end %>
+      <br/><br/>
+      <%= link_to @restaurant.website_url, target: "_blank" do %>
+        <span class="fa fa-globe"> website</span>
+      <% end %>
+      <br/><br/>
+
+
+
+
+    </div>
+    <div class="col-xs-9">
+      <h1><%= @restaurant.name %></h1>
+      <%= @restaurant.category.titleize %>
+      <hr>
+      <div class="col-xs-9">
+        <%= @restaurant.description%>
+      <h3>Opening Hours:</h3>
+      <%if @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['open'] == 'true'%>
+      <span class="btn btn-success" id="opening_hours_show"><span class="fa fa-check"></span> Open
+      <span id="opening_hours_arrow" class="fa fa-angle-down"></span></span>
+       from <strong><%= @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['opening_hour'] %></strong>
+       till <strong><%= @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['closing_hour'] %></strong>
+       <br>
+        <strong><%= @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['program'].titleize %></strong>
+      <% else %>
+        <span class="btn btn-danger"><span class="fa fa-closed"></span> Closed</span>
+      <% end %>
+      <br/>
+      <div id="operation_hour" hidden>
+        <% @opening_days_hours.each do |key,value|%>
+        <% if value["open"] == 'true'%>
+
+          <span class="btn btn-success weekdays">
+            <span class="fa fa-check"></span>
+            <%= key.first(3).capitalize %>
+          </span>
+
+          from <strong><%= value['opening_hour'] %></strong>
+          till <strong><%= value['closing_hour'] %></strong>
+
+          <% if value['program'] != "" %>
+            <i class="fa fa-arrow-right"></i>
+            <strong><%= value['program'].titleize %></strong>
+          <% end %>
+
+          <br/><br/>
+
+        <% else %>
+
+          <span class="btn btn-danger weekdays">
+            <span class="fa fa-close"></span>
+            <%= key.capitalize %>
+          </span>
+          <i class="fa fa-arrow-right"></i>
+          <strong>Closed</strong>
+
+        <% end %>
+
+        <% end %>
+
+
+      </div>
+      <br/>
+      <h2>Menu:</h2>
+      <button class="picture_link">
+        <%= image_tag @restaurant.menu_picture.url(:link) %>
+      </button>
+      <hr>
+      <h2>Pictures:</h2>
+      <button class="picture_link">
+        <%= image_tag @restaurant.item_picture.url(:link) %>
+      </button>
+
+      <hr>
+
+    </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="imageshow" class='container' hidden>
+</div>
+<div id="image_div" hidden>
+  <%= image_tag @restaurant.item_picture.url, id: "shown_img"%>
+</div>

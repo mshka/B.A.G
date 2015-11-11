@@ -1,13 +1,19 @@
 <div id="wrapper">
+
   <!-- Sidebar -->
   <div id="sidebar-wrapper">
     <div class="sidebar-logo">
-      <%= link_to my_establishment_profile_path, class: "navbar-brand" do%>
+      <%= link_to restaurant_path(current_restaurant.id), class: "navbar-brand" do%>
         <%= image_tag "logo.png" %>
       <% end %>
     </div>
 
     <ul class="sidebar-nav">
+      <li>
+          <%= link_to restaurant_path(current_restaurant.id)  do %>
+            <i class="fa fa-user"></i> My profile
+          <% end %>
+      </li>
       <li>
           <%= link_to "#"  do %>
             <i class="fa fa-book"></i> Bookings
@@ -34,8 +40,10 @@
       <li><%= link_to "Logout", destroy_restaurant_session_path, method: :delete %></li>
     </ul>
   </div>
+    <span  id="menu-toggle"><%= image_tag "toggle_button_back.png"%></span>
+
   <!-- /#sidebar-wrapper -->
-  <span  id="menu-toggle"><%= image_tag "toggle_button_back.png"%></span>
+
   <!-- Page Content -->
   <!-- /#page-content-wrapper -->
 </div>
