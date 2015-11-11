@@ -7,7 +7,7 @@ class RestaurantController < ApplicationController
 
   def update
     if current_restaurant.update(restaurant_params)
-      redirect_to my_establishment_profile_path
+      redirect_to restaurant_path(current_restaurant.id)
     else
       render :edit
     end

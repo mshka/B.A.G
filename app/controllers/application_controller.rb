@@ -6,6 +6,15 @@ class ApplicationController < ActionController::Base
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
 
+
+  def after_sign_in_path_for(resource)
+    if resource.class.name == "Restaurant"
+      request.env['omniauth.origin'] || stored_location_for(resource) || restaurant_path(current_restaurant.id)
+    else
+      request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+    end
+  end
+
   def configure_devise_permitted_parameters
     registration_params = [:first_name, :last_name, :picture, :email, :password, :password_confirmation, :name, :address, :phone_number, :website_url, :facebook_page, :twitter_handle, :opening_days_hours, :description, :category, :cover_picture, :menu_picture, :item_picture]
 

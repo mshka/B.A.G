@@ -25,6 +25,10 @@
       <%= link_to @restaurant.website_url, target: "_blank" do %>
         <span class="fa fa-globe"> website</span>
       <% end %>
+      <br/><br/>
+      <%= mail_to @restaurant.email do%>
+        <span class="fa fa-envelope-o"> <%= @restaurant.email%></span>
+      <% end %>
       <hr>
       <br/><br/>
 
@@ -45,9 +49,12 @@
        from <strong><%= @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['opening_hour'] %></strong>
        till <strong><%= @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['closing_hour'] %></strong>
        <br>
-        <strong><%= @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['program'].titleize %></strong>
+       <% if @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['program'] != "" %>
+          <strong><%= @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['program'].titleize %></strong><br/>
+        <% end %>
       <% else %>
-        <span class="btn btn-danger"><span class="fa fa-closed"></span> Closed</span>
+        <span class="btn btn-danger" id="opening_hours_show"><span class="fa fa-close"></span> Closed
+      <span id="opening_hours_arrow" class="fa fa-angle-down"></span></span><br>
       <% end %>
       <br/>
       <div id="operation_hour" hidden>
