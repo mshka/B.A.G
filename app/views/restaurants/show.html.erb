@@ -104,13 +104,37 @@
       <button class="picture_link">
         <%= image_tag @restaurant.item_picture.url(:link) %>
       </button>
-
       <hr>
+
+      <h2>Reviews:</h2>
+      <% if current_user != nil %>
+        <% if @user_review == [] %>
+          <%= form_for(@review) do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+
+            <%= f.text_area :rating %>
+
+            <h3><%= f.label "Write a review" %></h3>
+            <%= f.text_area :content, autofocus: true, class: "form-control input-medium" %>
+
+            <%= f.submit "Submit" ,class: "btn btn-primary signUpbtn" %><br/>
+
+          <% end %>
+        <% else %>
+          <div class="review_container" >
+            <%= image_tag current_user.picture.url(:thumb), class: 'img-rounded'%><%= current_user.first_name.titleize %> <%= current_user.last_name.titleize %>:<br/>
+            <div class="review_content">
+            <%= @user_review[0].content %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
 
     </div>
     </div>
   </div>
-
 </div>
 
 <div id="imageshow" class='container' hidden>

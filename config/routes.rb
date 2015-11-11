@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+  get 'reviews/create'
+
   get 'restaurants/show'
 
   get 'pages/my_profile', as: :my_profile
@@ -13,6 +16,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :restaurants, only: [:show, :index]
+  resources :reviews
 
 
   get "restaurant/edit"
