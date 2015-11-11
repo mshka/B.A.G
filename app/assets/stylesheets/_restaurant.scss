@@ -21,7 +21,7 @@
   z-index: 11;
   display: block;
   background: #FFF;
-  border-radius: 20px;
+  border-radius: 4px;
   height: auto;
   box-shadow: 5px 3px  #CCC;
   padding: 5px 20px;
@@ -30,4 +30,10 @@
 
 .weekdays{
   width: 15%;
+}
+
+.rest-profile{
+  padding-top: 50px;
+  background-color: white;
+
 }

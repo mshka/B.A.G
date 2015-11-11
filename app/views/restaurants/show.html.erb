@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container rest-profile">
   <!-- image, name and category -->
   <div class="row">
     <div class="col-xs-3" >
@@ -25,6 +25,7 @@
       <%= link_to @restaurant.website_url, target: "_blank" do %>
         <span class="fa fa-globe"> website</span>
       <% end %>
+      <hr>
       <br/><br/>
 
 
@@ -72,10 +73,12 @@
 
           <span class="btn btn-danger weekdays">
             <span class="fa fa-close"></span>
-            <%= key.capitalize %>
+            <%= key.first(3).capitalize %>
           </span>
           <i class="fa fa-arrow-right"></i>
           <strong>Closed</strong>
+          <br/>
+          <br/>
 
         <% end %>
 
@@ -84,6 +87,7 @@
 
       </div>
       <br/>
+      <hr>
       <h2>Menu:</h2>
       <button class="picture_link">
         <%= image_tag @restaurant.menu_picture.url(:link) %>
