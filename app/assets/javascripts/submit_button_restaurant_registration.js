@@ -33,7 +33,7 @@ $(document).ready(function(){
     $('#new_restaurant_sign_up').hide();
 
     if($("#main-category").find(":selected").text() != "Other"){
-      $("#type_category").val("").hide();
+      $("#type_category").val($("#main-category").find(":selected").text()).hide();
     }
 
     $("#main-category").on("change",function(){

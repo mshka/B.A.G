@@ -7,22 +7,22 @@ class Restaurant < ActiveRecord::Base
   validates :description, presence: true
   validates :category, exclusion: { in: ["Other", "Select category"], message: "must be valid" }, presence: true
   validates_format_of :facebook_page, with: /(www\.)?facebook\.com\/[a-zA-Z0-9]/i,:allow_blank => true
-  validates_format_of :twitter_handle, with: /@[a-zA-Z0-9]/i,:allow_blank => true
+  validates_format_of :twitter_handle, with: /(www\.)?twitter\.com\/[a-zA-Z0-9]/i,:allow_blank => true
   validates_format_of :website_url, with: /(www\.)?[a-zA-Z0-9]\.com/i,:allow_blank => true
 
   has_attached_file :cover_picture,
-    styles: { default: "300x300>", medium: "100x100>", thumb: "32x32>" },
+    styles: { default: "300x300>", medium: "210x210>", thumb: "32x32>" },
     convert_options: { thumb: "-quality 50 -strip",
                       original: "-quality 50 -strip" },
     default_url: "default_cover_:style.png"
 
   has_attached_file :menu_picture,
-    styles: { default: "500x500>"},
+    styles: { default: "600x600>", link: "210x210>"},
     convert_options: { thumb: "-quality 50 -strip",
                       original: "-quality 50 -strip" }
 
  has_attached_file :item_picture,
-  styles: { default: "500x500>"},
+  styles: { default: "600x600>", link: "210x210>"},
   convert_options: { thumb: "-quality 50 -strip",
                     original: "-quality 50 -strip" }
 
