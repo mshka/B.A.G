@@ -66,16 +66,16 @@
 }
 
 .review_container{
-  background-color: rgba(125,125,125,0.4);
+  background-color: transparent;
   border-radius: 5px;
   padding: 20px;
 }
 
 .review_content{
-  background-color: rgba(125,125,125,0.3);
-  border-radius: 5px;
+  background-color: rgba(225, 225, 225, 0.3);
+  border-radius: 2px;
   padding: 10px;
-
+  margin-top: 6px;
 }
 
 .btn-circle_rating{
@@ -84,6 +84,51 @@
 
 
 #title-review{
-  padding-left: 8px;
-  margin-left: 50%;
+  position: absolute;
+  top: 38px;
+  right: 30px;
+}
+
+.rest-profile {
+  background: transparent;
+  h1, h2, h3 {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 25px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  .picture_link {
+    border: none;
+    background: transparent;
+  }
+}
+.restaurant-details {
+  background: white;
+  padding: 25px;
+  box-shadow: 1px 1px 3px #CDCDCD;
+}
+
+.restaurant-main-infos {
+  padding-left: 12px;
+}
+
+#opening_hours_show {
+  font-size: 20px;
+  font-weight: 700;
+  color: #32B796;
+  margin-top: 30px;
+  cursor: pointer;
+}
+#opening_hours_arrow {
+  margin-left: 8px;
+  font-weight: bolder;
+}
+.btn-circle_rating {
+  border: none !important;
 }
