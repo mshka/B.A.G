@@ -23,9 +23,8 @@
         <%@reviews = Review.where("reviews.restaurant_id = #{current_restaurant.id} AND reviews.viewed_by_place = #{false}")%>
          <%= link_to reviews_path  do %>
            <i class="fa fa-star"></i> Reviews
-           &nbsp&nbsp
           <% if @reviews.count > 0 %>
-            <span class='btn btn-danger btn-notification'><%= @reviews.count %></span>
+            <div class='notification'><%= @reviews.count %></div>
           <% end %>
          <% end %>
       </li>
