@@ -29,27 +29,27 @@
 }
 
 .cb-slideshow li:nth-child(1) span {
-    background-image: image-url('rest1.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), image-url('rest1.jpg');
     opacity: 1!important;
 }
 .cb-slideshow li:nth-child(2) span {
-    background-image: image-url('bg_02.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), image-url('bg_02.jpg');
     animation-delay: 6s;
 }
 .cb-slideshow li:nth-child(3) span {
-    background-image: image-url('bg_03.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), image-url('bg_03.jpg');
     animation-delay: 12s;
 }
 .cb-slideshow li:nth-child(4) span {
-    background-image: url(../images/4.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), image-url('bg_04.jpg');
     animation-delay: 18s;
 }
 .cb-slideshow li:nth-child(5) span {
-    background-image: url(../images/5.jpg);
+    background-image:image-url('bg_05.jpg');
     animation-delay: 24s;
 }
 .cb-slideshow li:nth-child(6) span {
-    background-image: url(../images/6.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), image-url('bg_06.jpg');
     animation-delay: 30s;
 }
 
