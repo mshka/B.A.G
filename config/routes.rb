@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :restaurants, only: [:show, :index]
-  resources :reviews
+  resources :reviews, only: [:index, :create, :destroy]
 
 
   get "restaurant/edit"

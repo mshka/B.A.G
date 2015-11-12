@@ -38,6 +38,10 @@
     </div>
     <div class="col-xs-9">
       <h1><%= @restaurant.name %></h1>
+      <div id="title-review">
+         <span id="review-count-title"><%= pluralize(@reviews_count, 'Review') %></span>
+        <i class="btn btn-success btn-circle_rating"><%= @restaurant_ratings %></i>
+      </div>
       <%= @restaurant.category.titleize %>
       <hr>
       <div class="col-xs-9">
@@ -109,27 +113,69 @@
       <h2>Reviews:</h2>
       <% if current_user != nil %>
         <% if @user_review == [] %>
+          <% if @review.errors.any? %>
+          <div id="error_explanation">
+            <p class="alert alert-danger alert-sm">
+              <% @review.errors.full_messages.each do |message| %>
+              <%= message %><br/>
+              <% end %>
+            </p>
+          </div>
+          <%end%>
           <%= form_for(@review) do |f| %>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
 
-            <%= f.text_area :rating %>
+            <%= f.hidden_field :rating %>
 
-            <h3><%= f.label "Write a review" %></h3>
-            <%= f.text_area :content, autofocus: true, class: "form-control input-medium" %>
+            <h4><%= f.label "Write a review" %>
+            <div class="rating">
+              <span class="rating_button" id="star-5" value="5">☆</span>
+              <span class="rating_button" id="star-4" value="4">☆</span>
+              <span class="rating_button" id="star-3" value="3">☆</span>
+              <span class="rating_button" id="star-2" value="2">☆</span>
+              <span class="rating_button" id="star-1" value="1">☆</span>
+            </div></h4>
+            <%= f.text_area :content, autofocus: true, class: "form-control input-medium" %><br/>
 
-            <%= f.submit "Submit" ,class: "btn btn-primary signUpbtn" %><br/>
+            <%= f.submit "Submit" ,class: "btn btn-primary signUpbtn" ,id:'review_submit', disabled: true%><br/><br/>
 
           <% end %>
         <% else %>
           <div class="review_container" >
-            <%= image_tag current_user.picture.url(:thumb), class: 'img-rounded'%><%= current_user.first_name.titleize %> <%= current_user.last_name.titleize %>:<br/>
+            <%= image_tag current_user.picture.url(:thumb), class: 'img-rounded'%>
+            <strong>You:</strong><br/><hr>
             <div class="review_content">
             <%= @user_review[0].content %>
             </div>
-          </div>
+            <%= link_to review_path(@user_review[0].id), method: :delete, data: {confirm: "Are you sure?"} do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+            &nbsp
+            <%= link_to "#" do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+          </div><br/>
         <% end %>
       <% end %>
+        <% if @reviews == [] %>
+          <h5>There are no reviews for this place yet...</h5>
+        <% elsif @reviews == [0]%>
+        <br/><br/><strong>Only you reviewed this place</strong><br/><br/>
+        <% else %>
+          <% @reviews.each do |review|%>
+            <div class="review_container">
+              <strong><%= image_tag User.find(review.user_id).picture.url(:thumb), class: 'img-rounded'%> <%= User.find(review.user_id).first_name.titleize %> <%= User.find(review.user_id).last_name.titleize %></strong>
+                <span id="review-stars">gave this restaurant a <%= review.rating%> stars</span>
+              <br/><hr>
+              <div class="review_content">
+                <%= review.content %>
+
+              </div>
+            </div>
+            <br/><br/>
+            <% end %>
+          <% end %>
 
 
     </div>

@@ -37,3 +37,53 @@
   background-color: white;
 
 }
+
+.rating > span:hover:before {
+   content: "\2605";
+   position: absolute;
+}
+
+.rating {
+  transform:rotate(-180deg);
+  padding-left: 78%;
+
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+   color: gold;
+}
+
+
+#review-stars{
+  font-size: 12px;
+}
+
+.review_container{
+  background-color: rgba(125,125,125,0.4);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.review_content{
+  background-color: rgba(125,125,125,0.3);
+  border-radius: 5px;
+  padding: 10px;
+
+}
+
+.btn-circle_rating{
+  border-radius: 100px;
+}
+
+
+#title-review{
+  padding-left: 8px;
+  margin-left: 50%;
+}
