@@ -1,5 +1,39 @@
 $(document).ready(function(){
 
+
+  setInterval(function(){
+    if ($('#review_content').val() != "" && $('#review_rating').val() != ""){
+      $('#review_submit').prop('disabled', false);
+    }
+    else
+    {
+      $('#review_submit').prop('disabled', true);
+    }
+}, 1000);
+
+  $('.rating_button').on('click', function(){
+
+    star_nbr = parseInt($(this).attr('value'));
+    $('#review_rating').val(star_nbr)
+
+    for (var i = 1; i <= star_nbr; i++) {
+      nbr = i.toString()
+      string = '#star-' + nbr;
+      $(string).html('✭');
+      $(string).css('color', 'gold');
+    }
+
+    for (var i = (star_nbr + 1); i <= 5; i++) {
+      nbr = i.toString()
+      string = '#star-' + nbr;
+      $(string).html('☆');
+      $(string).css('color', '');
+    }
+
+
+
+  });
+
   $('#image_div').hide();
 
   $('.picture_link').click(function(e) {
@@ -35,4 +69,6 @@ $(document).ready(function(){
 
 
   });
+
+
 });

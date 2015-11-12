@@ -1,0 +1,17 @@
+<div class="container">
+<% if @reviews == []%>
+    <h2> There are no new reviews</h2>
+<% else %>
+<% @reviews.each do |review|%>
+  <div class="review_container">
+    <strong><%= image_tag User.find(review.user_id).picture.url(:thumb), class: 'img-rounded'%> <%= User.find(review.user_id).first_name.titleize %> <%= User.find(review.user_id).last_name.titleize %></strong>
+    <span id="review-stars">gave this restaurant a <%= review.rating%> stars</span>
+    <br/><hr>
+    <div class="review_content">
+      <%= review.content %>
+    </div>
+  </div>
+  <br/><br/>
+  <% end %>
+<% end %>
+</div>
