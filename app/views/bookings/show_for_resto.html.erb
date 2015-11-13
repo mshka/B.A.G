@@ -1,96 +1,115 @@
-<div class="container">
+<div class="container rest-profile">
+  <div class="row">
+    <div class="col-xs-9 restaurant-details">
+      <div class="restaurant-main-infos">
+
   <% if @all_bookings == [] and @new_bookings == [] %>
     <h2>There are no pending booking for now..</h2>
   <% else %>
     <% if @new_bookings == [] %>
-      <h3>No new bookings</h3>
+      <h1>Pending bookings:</h1>
+      <hr>
     <% else %>
-      <h3>new bokings</h3>
+      <h1>New bookings:</h3>
       <% @new_bookings.each do |new_booking| %>
         <%= link_to "#" do %>
-          <%= image_tag User.find(new_booking.user_id).picture.url(:thumb) %>
+          <h3><%= image_tag User.find(new_booking.user_id).picture.url(:thumb) %>
           <%= User.find(new_booking.user_id).first_name.titleize %>
           <%= User.find(new_booking.user_id).last_name.titleize %>
         <% end %>
 
-        <%= distance_of_time_in_words_to_now(new_booking.updated_at) %>
-        <br/>
+        &nbsp<%= distance_of_time_in_words_to_now(new_booking.updated_at) %> ago</h3>
 
-        Reservation for <%= new_booking.number_of_people %><br/>
-        on <%= new_booking.date.to_formatted_s(:long_ordinal) %> <br/>
-        <%= new_booking.user_comment %><br>
+        <h3>Reservation for <%= new_booking.number_of_people %> on <%= new_booking.date.to_formatted_s(:long_ordinal) %></h3>
+        <p><%= new_booking.user_comment %></p>
 
-        <textarea id="<%=new_booking.id %>" class="restauran-comment" placeholder="leave a note"></textarea><br/>
+        <textarea id="<%=new_booking.id %>" class="restauran-comment form-control input-medium" placeholder="leave a note" autofocus="autofocus"></textarea><br/>
 
         <%= link_to acc_booking_path(new_booking.id,'accepted'),id: "#{new_booking.id}-accept" do %>
-          <button class="btn btn-success"><i class="fa fa-check"></i> Accept</button>
+          <button class="btn btn-success btn-align-right"><i class="fa fa-check"></i> Accept</button>
         <% end %>
 
+<<<<<<< HEAD
         <%= link_to reject_booking_path(new_booking.id,'rejected'),id: "#{new_booking.id}-reject" do %>
           <button class="btn btn-danger"><i class="fa fa-close"></i> Reject</button>
+=======
+        <%= link_to reject_booking_path(new_booking.id,'accepted'),id: "#{new_booking.id}-reject" do %>
+          <button class="btn btn-danger btn-align-right"><i class="fa fa-close"></i> Reject</button>
+>>>>>>> e5502d415b6bf3b2bc786328b2c3790078132ea4
         <% end %>
-
-        <br/><br/>
+        <br>
+      <hr>
       <% end %>
     <% end %>
-    <hr>
-    <h3>All bookings</h3>
-    Order by:
+
+    <div id="title-review">
     <% if params[:params] == 'date DESC' %>
       <%= link_to place_books_path('date ASC') do %>
-        <button class="btn btn-primary">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
+        <button class="btn btn-primary btn-align-right">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
       <% end %>
     <% elsif params[:params] == 'date ASC' %>
       <%= link_to place_books_path('date DESC') do %>
-        <button class="btn btn-primary">booking time <i class="fa fa-chevron-up fa-1x"></i></button>
+        <button class="btn btn-primary btn-align-right">booking time <i class="fa fa-chevron-up fa-1x"></i></button>
       <% end %>
     <% else %>
       <%= link_to place_books_path('date ASC') do %>
-        <button class="btn btn-default">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
+        <button class="btn btn-default btn-align-right">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
       <% end %>
     <% end %>
 
     <% if params[:params] == 'updated_at DESC' %>
       <%= link_to place_books_path('updated_at ASC') do %>
-        <button class="btn btn-primary">post time <i class="fa fa-chevron-down "></i></button>
+        <button class="btn btn-primary btn-align-right">post time <i class="fa fa-chevron-down "></i></button>
       <% end %>
     <% elsif params[:params] == 'updated_at ASC'%>
       <%= link_to place_books_path('updated_at DESC') do %>
-        <button class="btn btn-primary">post time <i class="fa fa-chevron-up "></i></button>
+        <button class="btn btn-primary btn-align-right">post time <i class="fa fa-chevron-up "></i></button>
       <% end %>
     <% else %>
       <%= link_to place_books_path('updated_at ASC') do %>
-        <button class="btn btn-default">post time <i class="fa fa-chevron-up "></i></button>
+        <button class="btn btn-default btn-align-right">post time <i class="fa fa-chevron-up "></i></button>
       <% end %>
     <% end %>
+  </div>
 
 
-    <br><br>
+    <div class="user_booking">
     <% @all_bookings.each do |booking| %>
       <%= link_to "#" do %>
-        <%= image_tag User.find(booking.user_id).picture.url(:thumb) %>
+    <h3><%= image_tag User.find(booking.user_id).picture.url(:thumb), class: 'img-circle'%>
         <%= User.find(booking.user_id).first_name.titleize %>
         <%= User.find(booking.user_id).last_name.titleize %>
       <% end %>
 
-      <%= distance_of_time_in_words_to_now(booking.updated_at) %>
-      <br/>
-      Reservation for <%= booking.number_of_people %><br/>
-      on <%= booking.date.to_formatted_s(:long_ordinal) %> <br/>
-      <%= booking.user_comment %><br>
+      &nbsp<%= distance_of_time_in_words_to_now(booking.updated_at) %> ago</h3>
 
-      <textarea id="<%=booking.id %>" class="restauran-comment" placeholder="leave a note"></textarea><br/>
+      <h3>Reservation for <%= booking.number_of_people %> on <%= booking.date.to_formatted_s(:long_ordinal) %></h3>
+      <p><%= booking.user_comment %></p>
+
+      <textarea id="<%=booking.id %>" class="restauran-comment form-control input-medium" placeholder="leave a note" autofocus="autofocus" ></textarea><br/>
+
 
       <%= link_to acc_booking_path(booking.id,'accepted'),id: "#{booking.id}-accept" do %>
-        <button class="btn btn-success"><i class="fa fa-check"></i> Accept</button>
+        <button class="btn btn-success btn-align-right"><i class="fa fa-check"></i> Accept</button>
       <% end %>
 
+<<<<<<< HEAD
       <%= link_to reject_booking_path(booking.id,'rejected'),id: "#{booking.id}-reject" do %>
         <button class="btn btn-danger"><i class="fa fa-close"></i> Reject</button>
+=======
+      <%= link_to reject_booking_path(booking.id,'accepted'),id: "#{booking.id}-reject" do %>
+        <button class="btn btn-danger btn-align-right"><i class="fa fa-close "></i> Reject</button>
+>>>>>>> e5502d415b6bf3b2bc786328b2c3790078132ea4
+      <% end %>
+      <br>
+      <hr>
       <% end %>
 
-      <br/><br/>
-      <% end %>
+      </div>
   <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
 

@@ -108,6 +108,7 @@
     background: transparent;
   }
 }
+
 .restaurant-details {
   background: white;
   padding: 25px;
@@ -131,4 +132,16 @@
 }
 .btn-circle_rating {
   border: none !important;
+}
+
+.btn-align-right{
+  float: right;
+  margin-right:3px;
+}
+
+.user_booking{
+  h3{
+    font-size: 18px;
+  }
+
 }

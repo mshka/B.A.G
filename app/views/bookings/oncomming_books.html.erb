@@ -1,9 +1,13 @@
-<div class="container">
+<div class="container rest-profile">
+  <div class="row">
+    <div class="col-xs-9 restaurant-details">
+      <div class="restaurant-main-infos">
+
   <% if @all_bookings == [] and @todays_booking == nil %>
     <h2>Your place has no booking for now..</h2>
   <% else %>
       <% if @todays_bookings == [] %>
-        <h3>No bookings for today</h3>
+
       <% else %>
         <h3>Todays booking</h3>
         <% @todays_bookings.each do |todays_booking| %>
@@ -22,37 +26,37 @@
           <br/><br/>
           <% end %>
     <% end %>
-    <hr>
-    <h3>On comming bookings</h3>
-    Order by:
+
+    <h1>Reservations:</h1>
+    <div id="title-review">
     <% if params[:params] == 'date DESC' %>
       <%= link_to oncomming_books_path('date ASC') do %>
-        <button class="btn btn-primary">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
+        <button class="btn btn-primary  btn-align-right">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
       <% end %>
     <% elsif params[:params] == 'date ASC' %>
       <%= link_to oncomming_books_path('date DESC') do %>
-        <button class="btn btn-primary">booking time <i class="fa fa-chevron-up fa-1x"></i></button>
+        <button class="btn btn-primary  btn-align-right">booking time <i class="fa fa-chevron-up fa-1x"></i></button>
       <% end %>
     <% else %>
       <%= link_to oncomming_books_path('date ASC') do %>
-        <button class="btn btn-default">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
+        <button class="btn btn-default  btn-align-right">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
       <% end %>
     <% end %>
 
     <% if params[:params] == 'updated_at DESC' %>
       <%= link_to oncomming_books_path('updated_at ASC') do %>
-        <button class="btn btn-primary">post time <i class="fa fa-chevron-down "></i></button>
+        <button class="btn btn-primary  btn-align-right">post time <i class="fa fa-chevron-down "></i></button>
       <% end %>
     <% elsif params[:params] == 'updated_at ASC'%>
       <%= link_to oncomming_books_path('updated_at DESC') do %>
-        <button class="btn btn-primary">post time <i class="fa fa-chevron-up "></i></button>
+        <button class="btn btn-primary  btn-align-right">post time <i class="fa fa-chevron-up "></i></button>
       <% end %>
     <% else %>
       <%= link_to oncomming_books_path('updated_at ASC') do %>
-        <button class="btn btn-default">post time <i class="fa fa-chevron-up "></i></button>
+        <button class="btn btn-default  btn-align-right">post time <i class="fa fa-chevron-up "></i></button>
       <% end %>
     <% end %>
-
+    </div>
 
     <br><br>
     <% @all_bookings.each do |booking| %>
@@ -71,5 +75,9 @@
     <br/><br/>
     <% end %>
   <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
 

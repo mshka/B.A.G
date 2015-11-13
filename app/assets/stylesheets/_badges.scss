@@ -11,6 +11,7 @@
   margin-left: 8px;
 }
 
+<<<<<<< HEAD
 .navbar-notification{
   display: inline-block;
   background-color: #EE5F5B;
@@ -39,6 +40,21 @@
   color: white;
   margin-left: 8px;
 }
+=======
+.pending-notification {
+    display: inline-block;
+    background-color: #999999;
+    text-indent: initial;
+    width: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 50%;
+    font-size: 14px;
+    color: #FFF;
+    margin-left: 8px;
+}
+
+>>>>>>> e5502d415b6bf3b2bc786328b2c3790078132ea4
 .alert-notification {
   display: inline-block;
   background-color: $green;
