@@ -1,17 +1,19 @@
 $(document).ready(function(){
 
 
-  setInterval(function(){
-    if ($('#review_content').val() != "" && $('#review_rating').val() != ""){
-      $('#review_submit').prop('disabled', false);
-    }
-    else
-    {
-      $('#review_submit').prop('disabled', true);
-    }
-}, 1000);
+//   setInterval(function(){
+//     if ($('#review_content').val() != "" && $('#review_rating').val() != ""){
+//       $('#review_submit').prop('disabled', false);
+//     }
+//     else
+//     {
+//       $('#review_submit').prop('disabled', true);
+//     }
+// }, 1000);
+
 
   $('.rating_button').on('click', function(){
+    $('#review_submit').prop('disabled', false);
 
     star_nbr = parseInt($(this).attr('value'));
     $('#review_rating').val(star_nbr)
