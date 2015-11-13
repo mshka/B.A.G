@@ -17,7 +17,7 @@
       <li>
           <%@bookings = Booking.where("bookings.restaurant_id = #{current_restaurant.id} AND bookings.viewed_by_place = #{false}")%>
           <%= link_to place_books_path('date ASC') do %>
-            <i class="fa fa-book"></i> Pend Bookings
+            <i class="fa fa-book"></i>Pending list
             <% if @bookings.count > 0 %>
             <div class='notification'><%= @bookings.count %></div>
           <% end %>
@@ -27,7 +27,7 @@
           <%@todays_bookings = Booking.where("restaurant_id = #{current_restaurant.id} AND status iLIKE '%accepted%'")%>
           <% @todays_bookings = @todays_bookings.select{ |booking| booking.date.day() == Time.now.day() } %>
           <%= link_to oncomming_books_path('date ASC') do %>
-            <i class="fa fa-check"></i>Acc Bookings
+            <i class="fa fa-check"></i>Reservations
               <% if @todays_bookings.size > 0 %>
                <div class='alert-notification'><%= @todays_bookings.size %></div>
                <% end %>
@@ -44,7 +44,7 @@
       </li>
       <li>
         <%= link_to restaurant_edit_path  do %>
-          <i class="fa fa-pencil"></i> Edit your place
+          <i class="fa fa-pencil"></i> Edit info
         <% end %>
       </li>
       <li class="nav-btn" >
