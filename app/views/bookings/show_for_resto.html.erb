@@ -26,7 +26,7 @@
           <button class="btn btn-success"><i class="fa fa-check"></i> Accept</button>
         <% end %>
 
-        <%= link_to reject_booking_path(new_booking.id,'accepted'),id: "#{new_booking.id}-reject" do %>
+        <%= link_to reject_booking_path(new_booking.id,'rejected'),id: "#{new_booking.id}-reject" do %>
           <button class="btn btn-danger"><i class="fa fa-close"></i> Reject</button>
         <% end %>
 
@@ -85,7 +85,7 @@
         <button class="btn btn-success"><i class="fa fa-check"></i> Accept</button>
       <% end %>
 
-      <%= link_to reject_booking_path(booking.id,'accepted'),id: "#{booking.id}-reject" do %>
+      <%= link_to reject_booking_path(booking.id,'rejected'),id: "#{booking.id}-reject" do %>
         <button class="btn btn-danger"><i class="fa fa-close"></i> Reject</button>
       <% end %>
 

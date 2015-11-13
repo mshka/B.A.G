@@ -78,6 +78,41 @@ class BookingsController < ApplicationController
   end
 
 
+  def show_for_user
+    @pending_booking = Booking.where("user_id = #{current_user.id} AND status = 'sent'").order('updated_at DESC')
+    @acc_booking = Booking.where("user_id = #{current_user.id} AND status iLIKE '%accepted%'").order('updated_at DESC')
+    @rej_booking = Booking.where("user_id = #{current_user.id} AND status iLIKE '%rejected%'").order('updated_at DESC')
+    @acc_booking.each do |booking|
+      booking.status = 'accepted'
+      booking.save
+    end
+    @rej_booking.each do |booking|
+      booking.status = 'rejected'
+      booking.save
+    end
+  end
+
+
+  def show
+    @booking = Booking.find(params[:id])
+    @booking.status.slice!('-show-pending')
+    @booking.save
+    @user = User.find(@booking.user_id)
+    @restaurant = Restaurant.find(@booking.restaurant_id)
+  end
+
+
+  def edit
+
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to user_books_path
+  end
+
+
   private
 
   def booking_params
