@@ -1,2 +1,17 @@
-<h1>Pages#search</h1>
-<p>Find me in app/views/pages/search.html.erb</p>
+<div class="container">
+  <form action="/search" method="get" class="form-inline">
+    <input type="search" placeholder="What are you looking for?" class="form-control input-lg input-long input-search" name="searchvalue">
+    <button type="submit" class ="btn btn-primary btn-lg btn-search">Search</button>
+  </form>
+  <hr>
+    <% @search_result.each do |place|%>
+        <%= link_to restaurant_path(place.id) do %>
+          <div class="search_container">
+          <%= image_tag place.cover_picture.url(:medium)%>
+          <%= place.name%>
+          <%= place.address%>
+          </div>
+        <% end %>
+    <% end %>
+  <br>
+</div>

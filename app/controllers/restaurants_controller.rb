@@ -16,7 +16,7 @@ class RestaurantsController < ApplicationController
       @review = Review.new
       @reviews = @reviews - @user_review
 
-      if @reviews == []
+      if @reviews == [] and @user_review != []
         @reviews = [0]
       end
 

@@ -176,7 +176,12 @@
         <% else %>
           <% @reviews.each do |review|%>
             <div class="review_container">
-              <strong><%= image_tag User.find(review.user_id).picture.url(:thumb), class: 'img-circle'%> <%= User.find(review.user_id).first_name.titleize %> <%= User.find(review.user_id).last_name.titleize %></strong>
+              <strong><%= image_tag User.find(review.user_id).picture.url(:thumb), class: 'img-circle'%>
+                <%= link_to user_path(User.find(review.user_id).id) do %>
+                  <%= User.find(review.user_id).first_name.titleize %>
+                  <%= User.find(review.user_id).last_name.titleize %>
+                <% end %>
+                </strong>
                 <span id="review-stars">gave this restaurant a <%= review.rating%> stars</span>
               <hr>
               <% if review.content != nil && review.content != ''%>

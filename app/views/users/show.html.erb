@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="user_profile">
+    <div class="col">
+      <button class="picture_link">
+        <%= image_tag @user.picture.url(:medium), class: "img img-circle"%>
+      </button>
+      <br/>
+     <strong><%= @user.first_name.titleize %> <%= @user.last_name.titleize %></strong><br/>
+     <%= @user.email %><br/>
+     Account created on <%= @user.created_at.to_formatted_s(:long_ordinal) %><br/>
+     Last active in <%= distance_of_time_in_words_to_now(@user.last_sign_in_at)%> ago<br/>
+     <%= pluralize(@reviews.count, 'Review') %><br/>
+     <%= pluralize(@booking.count, 'Booking') %><br/>
+
+    </div>
+  </div>
+</div>
+
+<div id="imageshow" class='container' hidden>
+</div>
+<div id="image_div" hidden>
+  <%= image_tag @user.picture.url, id: "shown_img"%>
+</div>

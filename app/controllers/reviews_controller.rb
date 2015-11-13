@@ -6,6 +6,8 @@ class ReviewsController < ApplicationController
       review.viewed_by_place = true
       review.save
     end
+    @all_reviews = Review.where("reviews.restaurant_id = #{current_restaurant.id}").order('updated_at DESC')
+    @all_reviews = @all_reviews - @reviews
   end
 
   def create

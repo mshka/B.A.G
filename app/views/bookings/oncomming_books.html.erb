@@ -13,8 +13,10 @@
         <% @todays_bookings.each do |todays_booking| %>
           <%= link_to "#" do %>
             <%= image_tag User.find(todays_booking.user_id).picture.url(:thumb) %>
-            <%= User.find(todays_booking.user_id).first_name.titleize %>
-            <%= User.find(todays_booking.user_id).last_name.titleize %>
+            <%= link_to user_path(User.find(todays_booking.user_id).id) do %>
+              <%= User.find(todays_booking.user_id).first_name.titleize %>
+              <%= User.find(todays_booking.user_id).last_name.titleize %>
+            <% end %>
           <% end %>
 
           <%= distance_of_time_in_words_to_now(todays_booking.updated_at) %>
@@ -62,8 +64,10 @@
     <% @all_bookings.each do |booking| %>
     <%= link_to "#" do %>
       <%= image_tag User.find(booking.user_id).picture.url(:thumb) %>
-      <%= User.find(booking.user_id).first_name.titleize %>
-      <%= User.find(booking.user_id).last_name.titleize %>
+      <%= link_to user_path(User.find(booking.user_id).id) do %>
+        <%= User.find(booking.user_id).first_name.titleize %>
+        <%= User.find(booking.user_id).last_name.titleize %>
+      <% end %>
     <% end %>
 
     <%= distance_of_time_in_words_to_now(booking.updated_at) %>

@@ -11,6 +11,32 @@
     <% if user_signed_in? %>
       <div class="dropdown notification-button">
         <span class="dropdown-toggle " type="button" class="avatar dropdown-toggle" data-toggle="dropdown">
+        <span class="fa fa-clock-o fa-lg"></span></span>
+        <% remainder = Booking.where("user_id = #{current_user.id} AND status iLIKE '%accepted%'") %>
+        <% remainder = remainder.select{ |booking| booking.date.day() == Time.now.day()} %>
+        <% if remainder.count > 0 %>
+         <div class='navbar-alert'><%= remainder.size %></div>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+
+          <% remainder.each do |booking| %>
+
+            <li>
+              <%= link_to restaurant_booking_path(booking.restaurant_id, booking.id) do %>
+                <%= image_tag Restaurant.find(booking.restaurant_id).cover_picture.url(:thumb) %> You have a booking today at <%= Restaurant.find(booking.restaurant_id).name.titleize %>
+              <% end %>
+            </li>
+            </ul>
+          <% end %>
+        <% else %>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#">You have no booking for today</a></li>
+          </ul>
+        <% end %>
+
+      </div>
+        &nbsp&nbsp&nbsp&nbsp
+      <div class="dropdown notification-button">
+        <span class="dropdown-toggle " type="button" class="avatar dropdown-toggle" data-toggle="dropdown">
         <span class="fa fa-bell fa-lg"></span>
         <% notifi = Booking.where("user_id = #{current_user.id} AND status iLIKE '%show-pending%'").order('updated_at DESC') %>
         <% if notifi.count > 0 %>
@@ -51,7 +77,7 @@
 
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to my_profile_path do %>
+              <%= link_to user_path(current_user.id) do %>
                 <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
               <% end %>
             </li>

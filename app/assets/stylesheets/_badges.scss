@@ -26,6 +26,22 @@
 .navbar-notification > span{
   font-size: 23.9px;
 }
+.navbar-alert{
+  display: inline-block;
+  background-color: $green;
+  text-indent: initial;
+  width: 20px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: white;
+  margin-left: -37px;
+}
+
+.navbar-alert > span{
+  font-size: 23.9px;
+}
 
 .pending-notification {
     display: inline-block;

@@ -40,13 +40,18 @@ $(document).ready(function(){
 
   $('.picture_link').click(function(e) {
     // $(this).src = "hackanm.gif"
-    link_part = $(this).find("img").attr('src')
-    link_part = link_part.split('link')
-    link_part = link_part.join('default')
-    console.log(link_part)
-    $('#shown_img').attr("src", link_part)
-    $('#imageshow').show()
-    $('#image_div').show()
+    link_part = $(this).find("img").attr('src');
+    if (link_part.indexOf('link') > -1){
+      link_part = link_part.split('link');
+      link_part = link_part.join('default');
+
+    }else{
+      link_part = link_part.split('medium');
+      link_part = link_part.join('original');
+    }
+    $('#shown_img').attr("src", link_part);
+    $('#imageshow').show();
+    $('#image_div').show();
 
   });
 
