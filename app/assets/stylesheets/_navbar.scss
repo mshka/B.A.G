@@ -65,12 +65,12 @@
   }
   &-dropdown-menu {
     margin-top: 15px;
-    box-shadow: 1px 1px 4px #E6E6E6;
+    box-shadow: 1px 1px 4px #E1E1E1;
     border-color: #E6E6E6;
     li > a {
       transition: color 0.3s ease;
       font-weight: lighter !important;
-      color: #999999 !important;
+      color: #2F2F2F !important;
       font-size: 15px !important;
       line-height: 22px !important;
       padding: 10px 20px;
@@ -100,4 +100,8 @@
     margin-left: 10px;
     margin-right: 10px;
   }
+}
+
+.notification-button{
+  cursor: pointer;
 }

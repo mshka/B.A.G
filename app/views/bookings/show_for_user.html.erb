@@ -1,0 +1,40 @@
+<div class="container">
+  <h3><i class="fa fa-clock-o" style="color:orange"></i> Pending Requests:</h3><hr>
+  <% if @pending_booking == []%>
+  <h4>No pending requests at the moment</h4>
+  <% else %>
+    <% @pending_booking.each do |request| %>
+      Booking request at <%= Restaurant.find(request.restaurant.id).name.titleize %>
+      on <%= request.date.to_formatted_s(:long_ordinal)%>
+      for <%= pluralize(request.number_of_people , 'person') %>
+      <%= link_to "show", restaurant_booking_path(request.restaurant.id,request.id)%>
+      <br/><br/>
+    <% end %>
+  <% end %>
+  <% if @acc_booking != [] %>
+    <hr>
+    <h3><i class="fa fa-check" style="color:green"></i> Accepted Requests:</h3><hr>
+    <% @acc_booking.each do |request| %>
+      Booking request at <%= Restaurant.find(request.restaurant.id).name.titleize %>
+      on <%= request.date.to_formatted_s(:long_ordinal)%>
+      for <%= pluralize(request.number_of_people , 'person') %>
+      <%= link_to "Show", restaurant_booking_path(request.restaurant.id,request.id)%>
+      <br/><br/>
+    <% end %>
+  <% end %>
+  <% if @rej_booking != [] %>
+
+    <hr>
+    <h3><i class="fa fa-close" style="color:red"></i>Rejected Requests:</h3><hr>
+
+    <% @rej_booking.each do |request| %>
+      Booking request at <%= Restaurant.find(request.restaurant.id).name.titleize %>
+      on <%= request.date.to_formatted_s(:long_ordinal)%>
+      for <%= pluralize(request.number_of_people , 'person') %>
+      <%= link_to "Show", restaurant_booking_path(request.restaurant_id,request.id)%>
+      <%= link_to "Delete", restaurant_booking_path(request.restaurant_id, request.id), method: :delete, data: {confirm: 'Are you sure?'}%>
+      <br/><br/>
+    <% end %>
+  <% end %>
+
+</div>

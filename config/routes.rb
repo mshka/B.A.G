@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
 
 
+  get 'users/show'
+
+  get 'users/edit'
+
+  get 'users/update'
+
   get 'pages/my_profile', as: :my_profile
   get 'bookings/show_for_resto/:params',to: 'bookings#show_for_resto', as: :place_books
+  get 'bookings/show_for_user',to: 'bookings#show_for_user', as: :user_books
   get 'bookings/oncomming_books/:params',to: 'bookings#oncomming_books', as: :oncomming_books
   get 'bookings/acc_booking/:id/:restaurant_comment',to: 'bookings#acc_booking', as: :acc_booking
   get 'bookings/reject_booking/:id/:restaurant_comment',to: 'bookings#reject_booking', as: :reject_booking
