@@ -1,0 +1,28 @@
+<div class="container">
+  <h3>Create a new booking for <%= @restaurant.name.titleize%></h3>
+  <%= form_for [@restaurant, @booking] do |f| %>
+     <% if @booking.errors.any? %>
+        <div id="error_explanation">
+          <p class="alert alert-danger alert-sm">
+            <% @booking.errors.full_messages.each do |message| %>
+            <%= message %><br/>
+            <% end %>
+          </p>
+        </div>
+        <%end%>
+    <%= f.label 'Select date'%><br/>
+    <%= f.datetime_local_field :date%><br/><br/>
+
+    <%= f.label 'Number of person:'%><br/>
+    <%= f.number_field :number_of_people, min:1%><br/><br/>
+
+    <%= f.label 'Note for reservation:'%><br/>
+    <%= f.text_area :user_comment%><br/><br/>
+
+    <%= f.submit 'Send request' %>
+
+
+  <% end %>
+
+
+</div>

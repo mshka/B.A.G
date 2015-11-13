@@ -11,6 +11,19 @@
   margin-left: 8px;
 }
 
+.alert-notification {
+  display: inline-block;
+  background-color: $green;
+  text-indent: initial;
+  width: 25px;
+  text-align: center;
+  line-height: 25px;
+  border-radius: 50%;
+  font-size: 14px;
+  color: white;
+  margin-left: 8px;
+}
+
 
 .icon-badge-container {
   position: relative;

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant_id: 
+  user_id: 
+  date: 2015-11-12 11:56:58
+  user_comment: MyText
+  restaurant_comment: MyText
+  viewed_by_place: false
+  viewed_by_user: false
+  status: MyString
+  number_of_people: 1
+
+two:
+  restaurant_id: 
+  user_id: 
+  date: 2015-11-12 11:56:58
+  user_comment: MyText
+  restaurant_comment: MyText
+  viewed_by_place: false
+  viewed_by_user: false
+  status: MyString
+  number_of_people: 1

@@ -15,8 +15,22 @@
           <% end %>
       </li>
       <li>
-          <%= link_to "#"  do %>
-            <i class="fa fa-book"></i> Bookings
+          <%@bookings = Booking.where("bookings.restaurant_id = #{current_restaurant.id} AND bookings.viewed_by_place = #{false}")%>
+          <%= link_to place_books_path('date ASC') do %>
+            <i class="fa fa-book"></i> Pend Bookings
+            <% if @bookings.count > 0 %>
+            <div class='notification'><%= @bookings.count %></div>
+          <% end %>
+          <% end %>
+      </li>
+      <li>
+          <%@todays_bookings = Booking.where("restaurant_id = #{current_restaurant.id} AND status iLIKE '%accepted%'")%>
+          <% @todays_bookings = @todays_bookings.select{ |booking| booking.date.day() == Time.now.day() } %>
+          <%= link_to oncomming_books_path('date ASC') do %>
+            <i class="fa fa-check"></i>Acc Bookings
+              <% if @todays_bookings.size > 0 %>
+               <div class='alert-notification'><%= @todays_bookings.size %></div>
+               <% end %>
           <% end %>
       </li>
       <li>

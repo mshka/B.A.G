@@ -10,12 +10,17 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new
-    @review.content = review_params[:content]
+    if review_params[:content].blank?
+      @review.content = ''
+    else
+      @review.content = review_params[:content]
+    end
     @review.rating = review_params[:rating].to_i
     @review.user_id = review_params[:user_id]
     @review.restaurant_id = review_params[:restaurant_id]
     @review.save
     redirect_to restaurant_path(review_params[:restaurant_id])
+    flash[:notice] = "Review added"
 
 
   end

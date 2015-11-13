@@ -7,9 +7,14 @@
     <strong><%= image_tag User.find(review.user_id).picture.url(:thumb), class: 'img-rounded'%> <%= User.find(review.user_id).first_name.titleize %> <%= User.find(review.user_id).last_name.titleize %></strong>
     <span id="review-stars">gave this restaurant a <%= review.rating%> stars</span>
     <br/><hr>
-    <div class="review_content">
-      <%= review.content %>
-    </div>
+    <% if review.content != nil && review.content != ''%>
+
+      <div class="review_content">
+
+          <%= review.content %>
+      </div>
+    <% end %>
+
   </div>
   <br/><br/>
   <% end %>
