@@ -31,6 +31,16 @@
       <% end %>
       <hr>
       <br/><br/>
+      <% if current_user != nil %>
+
+      <%= link_to 'Book request', new_restaurant_booking_path(@restaurant.id),class: 'btn btn-primary'%>
+      <% elsif  current_restaurant != nil%>
+        <%= link_to 'Book request', new_restaurant_booking_path(@restaurant.id),class: 'btn btn-primary',disabled: true%>
+      <% else %>
+      <%= link_to 'Book request', new_restaurant_booking_path(@restaurant.id),class: 'btn btn-primary',disabled: true%><br/>
+        <i> Sign in to send a booking request!</i>
+      <% end %>
+
     </div>
     <div class="col-xs-9 restaurant-details">
       <div class="restaurant-main-infos">
@@ -43,10 +53,10 @@
       </div>
       <hr>
       <div class="col-xs-12">
-        <%= @restaurant.description%>
+      <%= @restaurant.description%><br/><br/>
 
       <%if @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['open'] == 'true'%>
-      <span class="btn btn-success" id="opening_hours_show"><span class="fa fa-check"></span> Open
+      <span class="" id="opening_hours_show"><span class="fa fa-check"></span> Open
       <span id="opening_hours_arrow" class="fa fa-angle-down"></span></span>
        from <strong><%= @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['opening_hour'] %></strong>
        till <strong><%= @opening_days_hours[Date::DAYNAMES[Time.now.wday].downcase]['closing_hour'] %></strong>
@@ -125,7 +135,7 @@
 
             <%= f.hidden_field :rating %>
 
-            <h4><%= f.label "Write a review" %>
+            <h4><%= f.label "Write a review: " %>
             <div class="rating">
               <span class="rating_button" id="star-5" value="5">☆</span>
               <span class="rating_button" id="star-4" value="4">☆</span>
@@ -141,16 +151,21 @@
         <% else %>
           <div class="review_container" >
             <%= image_tag current_user.picture.url(:thumb), class: 'img-circle'%>
-            <strong>You:</strong><br/><hr>
-            <div class="review_content">
-            <%= @user_review[0].content %>
-            </div>
+            <strong>You </strong> <span id="review-stars">gave this restaurant a <%= @user_review[0].rating%> stars</span> &nbsp
             <%= link_to review_path(@user_review[0].id), method: :delete, data: {confirm: "Are you sure?"} do %>
-              <i class="fa fa-trash"></i>
+              <i class="glyphicon glyphicon-trash"></i>
             <% end %>
-            <%= link_to "#" do %>
-              <i class="fa fa-pencil"></i>
+
+
+            <br/><hr>
+            <% if @user_review[0].content != nil && @user_review[0].content != ''%>
+              <div class="review_content">
+                <%= @user_review[0].content %>
+            </div>
             <% end %>
+
+
+
           </div><br/>
         <% end %>
       <% end %>
@@ -163,13 +178,18 @@
             <div class="review_container">
               <strong><%= image_tag User.find(review.user_id).picture.url(:thumb), class: 'img-circle'%> <%= User.find(review.user_id).first_name.titleize %> <%= User.find(review.user_id).last_name.titleize %></strong>
                 <span id="review-stars">gave this restaurant a <%= review.rating%> stars</span>
-              <br/>
-              <div class="review_content">
-                <%= review.content %>
+              <hr>
+              <% if review.content != nil && review.content != ''%>
 
-              </div>
-            </div>
+                <div class="review_content">
+                    <%= review.content %>
+
+               </div>
             <br/><br/>
+
+              <% end %>
+
+            </div>
             <% end %>
           <% end %>
 

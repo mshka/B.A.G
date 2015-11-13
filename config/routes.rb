@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
 
-  get 'reviews/create'
-
-  get 'restaurants/show'
-
   get 'pages/my_profile', as: :my_profile
+  get 'bookings/show_for_resto/:params',to: 'bookings#show_for_resto', as: :place_books
+  get 'bookings/oncomming_books/:params',to: 'bookings#oncomming_books', as: :oncomming_books
+  get 'bookings/acc_booking/:id/:restaurant_comment',to: 'bookings#acc_booking', as: :acc_booking
+  get 'bookings/reject_booking/:id/:restaurant_comment',to: 'bookings#reject_booking', as: :reject_booking
+
   get 'pages/establishment_home_porfile', as: :my_establishment_profile
   get '/search', to: 'pages#search'
 
@@ -15,7 +16,9 @@ Rails.application.routes.draw do
   devise_for :restaurants
   devise_for :users
 
-  resources :restaurants, only: [:show, :index]
+  resources :restaurants, only: [:show, :index] do
+    resources :bookings
+  end
   resources :reviews, only: [:index, :create, :destroy]
 
 
