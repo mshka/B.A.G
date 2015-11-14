@@ -21,7 +21,8 @@
                 <%= distance_of_time_in_words_to_now(todays_booking.updated_at) %> ago.</h3>
                <h3> Reservation for <%= todays_booking.number_of_people %>
                 on <%= todays_booking.date.to_formatted_s(:long_ordinal) %> </h3>
-                <p><%= todays_booking.user_comment %></p>
+                <strong>Contact:</strong><%= todays_booking.phone_number %><br/>
+                <strong>Note:</strong><p><%= todays_booking.user_comment %></p>
                 <hr>
 
               <% end %>
@@ -72,7 +73,8 @@
 
           <h3>Reservation for <%= booking.number_of_people %>
           on <%= booking.date.to_formatted_s(:long_ordinal) %></h3>
-          <p><%= booking.user_comment %></p>
+          <strong>Contact:</strong><%= booking.phone_number %><br/>
+          <strong>Note:</strong><p><%= booking.user_comment %></p>
           <hr>
           <% end %>
         <% end %>

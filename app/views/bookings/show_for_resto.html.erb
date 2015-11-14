@@ -2,6 +2,33 @@
   <div class="row">
     <div class="col-xs-9 restaurant-details">
       <div class="restaurant-main-infos">
+  <% if @canceled_bookings != []%>
+  <h3>Canceled reservation</h3>
+    <% @canceled_bookings.each do |new_booking| %>
+        <%= link_to "#" do %>
+          <h3><%= image_tag User.find(new_booking.user_id).picture.url(:thumb) %>
+            <%= link_to user_path(User.find(new_booking.user_id).id) do %>
+              <%= User.find(new_booking.user_id).first_name.titleize %>
+              <%= User.find(new_booking.user_id).last_name.titleize %>
+              <% end %>
+        <% end %>
+
+        &nbsp<%= distance_of_time_in_words_to_now(new_booking.updated_at) %> ago</h3>
+        <h3>Reservation for <%= new_booking.number_of_people %> on <%= new_booking.date.to_formatted_s(:long_ordinal) %></h3>
+        <strong>Contact:</strong> <%= new_booking.phone_number %><br>
+        <strong>Note:</stong><p><%= new_booking.user_comment %></p>
+        <%= link_to restaurant_booking_path(current_restaurant.id,new_booking.id),method: :delete, data: {confirm: 'Are you sure?'} do %>
+          <button class="btn btn-danger">
+            <i class="fa fa-close"> Delete</i>
+          </button>
+        <% end %>
+
+        <% end %>
+        <br>
+      <hr>
+
+
+  <% end %>
 
   <% if @all_bookings == [] and @new_bookings == [] %>
     <h2>There are no pending bookings for now...</h2>
@@ -21,9 +48,9 @@
         <% end %>
 
         &nbsp<%= distance_of_time_in_words_to_now(new_booking.updated_at) %> ago</h3>
-
         <h3>Reservation for <%= new_booking.number_of_people %> on <%= new_booking.date.to_formatted_s(:long_ordinal) %></h3>
-        <p><%= new_booking.user_comment %></p>
+        <strong>Contact:</strong> <%= new_booking.phone_number %><br>
+        <strong>Note:</stong><p><%= new_booking.user_comment %></p>
 
         <textarea id="<%=new_booking.id %>" class="restauran-comment form-control input-medium" placeholder="leave a note" autofocus="autofocus"></textarea><br/>
 
@@ -84,7 +111,8 @@
       &nbsp<%= distance_of_time_in_words_to_now(booking.updated_at) %> ago</h3>
 
       <h3>Reservation for <%= booking.number_of_people %> on <%= booking.date.to_formatted_s(:long_ordinal) %></h3>
-      <p><%= booking.user_comment %></p>
+      <strong>Contact: </strong><%= booking.phone_number %><br><br>
+      <strong>Note:</strong><p><%= booking.user_comment %></p>
 
       <textarea id="<%=booking.id %>" class="restauran-comment form-control input-medium" placeholder="leave a note" autofocus="autofocus" ></textarea><br/>
 
