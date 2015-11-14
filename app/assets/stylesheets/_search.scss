@@ -11,3 +11,25 @@
   line-height: 44px;
 }
 
+.search-page{
+  form{
+    margin: 10px auto;
+    width: 500px;
+
+    .btn-search{
+      background:  white;
+      border: 3px solid darkgray;
+      color: darkgray;
+      &:hover {
+        border: 3px solid black;
+        color: black;
+
+      }
+
+
+    }
+
+  }
+
+
+}
