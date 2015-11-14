@@ -1,4 +1,7 @@
-<div class="container">
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-body">
 <% if @reviews == [] and @all_reviews != []%>
     <h2> There are no new reviews</h2>
 <% else %>
@@ -52,4 +55,7 @@
   <br/><br/>
   <% end %>
 <% end %>
+      </div>
+    </div>
+  </div>
 </div>

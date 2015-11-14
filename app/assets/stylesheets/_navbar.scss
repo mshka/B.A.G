@@ -7,7 +7,7 @@
     background: transparent;
     .navbar-wagon-link {
       color: white;
-      font-size: 14px;
+      font-size: 18px;
       .navbar-wagon:hover {
         color: white;
         text-decoration: none;
@@ -27,7 +27,7 @@
   }
   &-container {
     display: flex;
-    height: 70px;
+    height: 100px;
     align-items: center;
   }
   &-pusher {
@@ -41,26 +41,29 @@
 
   &-link {
     color: #616668;
-    font-size: 14px;
+    font-size: 20px;
+    font-weight:bold;
     &:hover {
-      color: #da552f;
+      color: #002f3d;
       text-decoration: none;
     }
   }
   &-button {
     margin-left: 10px;
     padding: 0 20px;
-    border-radius: 20em;
+   // border-radius: 20em;
     line-height: 40px;
-    background-color: #D23333;
+    background-color: rgba(191, 135, 125, 0.64);
     color: white;
-    font-size: 14px;
-    border: 2px solid $brand-color;
+    font-size: 18px;
+    border: 2px solid #f5f5f5;
 
     &:hover {
       color: white;
-      background: $brand-color;
-      border-color: darken($brand-color, 10%);
+      background: rgba(134, 123, 121, 0.64);
+      border-color: none;
+      //darken($brand-color, 20%);
+
     }
   }
   &-dropdown-menu {
@@ -105,3 +108,6 @@
 .notification-button{
   cursor: pointer;
 }
+
+
+//rgba(153, 153, 153, 0.04);

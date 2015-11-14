@@ -4,6 +4,7 @@
   padding-top: 10px;
   padding-bottom: 70px;
 
+
   h1, h2, h3 {
     font-weight: bold;
   }
@@ -16,15 +17,12 @@
   h3 {
     font-size: 18px;
   }
-}
-
-
-
-  .user_picture_link {
-    border: none;
-    background: transparent;
-
   }
+
+.user_picture_link {
+  border: none;
+  background: transparent;
+}
 
 
 .user-details {
@@ -40,7 +38,7 @@
 
 .user-searchbar{
   padding-bottom: 20px;
-   text-align:right;
+   text-align:center;
 }
 
 div.show-image {
@@ -68,11 +66,31 @@ div.show-image input.delete {
 }
 .user_profile{
   background-color: white;
-  text-align: center;
-  padding-top: 5%;
+  text-align: left;
+  padding-top: 20px;
   padding-bottom: 5%;
-  margin-left: 20%;
-  margin-right: 20%;
-  border-radius: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: 2px;
   border-color: black;
+}
+
+.img{
+  width:200px;
+  height:200px;
+}
+
+.user-details{
+float: right;
+}
+
+.link-tcolor{
+  color: #ffffff;
+  width: 100px!important;
+}
+
+.t-panel{
+  font-size:18px;
+  font-weight: bold;
+  margin-top:20px;
 }
