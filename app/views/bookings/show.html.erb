@@ -14,6 +14,7 @@
 
        <h3> on <%= @booking.date.to_formatted_s(:long_ordinal) %><br/>
         for <%= pluralize(@booking.number_of_people , 'person')%><br/></h3><hr>
+        <strong>Contact:</strong> <%= @booking.phone_number %>
         <% if @booking.user_comment != "" %>
           <h3><%= @user.first_name.titleize %>:</h3>
           <%= @booking.user_comment%><br/>
@@ -23,18 +24,24 @@
           <%= @booking.restaurant_comment%><br/>
         <% end %>
         <br>
-        <%= link_to restaurant_booking_path(@restaurant.id, @booking.id), method: :delete, data: {confirm: 'Are you sure?'} do %>
+        <% if @booking.status == 'sent' or @booking.status =='rejected'%>
+        <%= link_to delete_restaurant_path(@booking.id), data: {confirm: 'Are you sure?'} do %>
           <button class="btn btn-danger">
-            <i class="fa fa-trash"> Delete</i>
+            <i class="fa fa-close"> Delete</i>
           </button>
         <% end %>
-
-        <% if @booking.status == 'sent' %>
          <%= link_to edit_restaurant_booking_path(@restaurant.id, @booking.id) do %>
             <button class="btn btn-warning">
               <i class="fa fa-pencil"> Edit</i>
             </button>
           <% end %>
+        <% else %>
+          <%= link_to cancel_reservation_path(@booking.id), data: {confirm: 'Are you sure?'} do %>
+          <button class="btn btn-danger">
+            <i class="fa fa-close"> Cancel Reservation</i>
+          </button>
+        <% end %>
+
         <% end %>
       </div>
     </div>

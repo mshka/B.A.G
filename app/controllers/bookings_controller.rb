@@ -14,6 +14,7 @@ class BookingsController < ApplicationController
       viewed_by_place: false,
       viewed_by_user: false,
       status: 'sent',
+      phone_number: booking_params[:phone_number],
       restaurant_comment: '',
       user_id: current_user.id,
       restaurant_id: params[:restaurant_id]
@@ -31,12 +32,13 @@ class BookingsController < ApplicationController
 
   def show_for_resto
     search_by = "bookings.#{params[:params]}"
+    @canceled_bookings = Booking.where("restaurant_id = #{current_restaurant.id} AND status iLIKE '%canceled%'").order(search_by)
     @new_bookings = Booking.where("bookings.restaurant_id = #{current_restaurant.id} AND bookings.viewed_by_place = #{false} AND bookings.status = 'sent'").order(search_by)
     @all_bookings = Booking.where("bookings.restaurant_id = #{current_restaurant.id} AND bookings.status = 'sent'").order(search_by)
     if (@all_bookings == @new_bookings and @new_bookings != [])
       @all_bookings = [0]
     else
-      @all_bookings = @all_bookings - @new_bookings
+      @all_bookings = @all_bookings - @new_bookings - @canceled_bookings
     end
     @new_bookings.each do |booking|
       booking.viewed_by_place = true
@@ -66,7 +68,6 @@ class BookingsController < ApplicationController
   def oncomming_books
     search_by = "bookings.#{params[:params]}"
     @all_bookings = Booking.where("restaurant_id = #{current_restaurant.id} AND status iLIKE '%accepted%'").order(search_by)
-
     @todays_bookings = @all_bookings
     @todays_bookings = @todays_bookings.select{ |booking| booking.date.day() == Time.now.day() }
 
@@ -103,12 +104,50 @@ class BookingsController < ApplicationController
 
 
   def edit
+    @restaurant = Restaurant.find(params[:restaurant_id])
+
+    @booking = Booking.find(params[:id])
+  end
+
+
+  def update
+    @restaurant = Restaurant.find(params[:restaurant_id])
+
+    @booking = Booking.find(params[:id])
+
+    @booking.date =  booking_params[:date],
+    @booking.user_comment =  booking_params[:user_comment],
+    @booking.number_of_people = booking_params[:number_of_people],
+    @booking.phone_number =  booking_params[:phone_number],
+    @booking.viewed_by_place = false,
+    @booking.status =  'sent',
+
+    if @booking.save
+      flash[:notice] = "Booking request sent"
+      redirect_to restaurant_booking_path(params[:restaurant_id], params[:id])
+    else
+      render :edit
+    end
 
   end
 
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
+    redirect_to place_books_path('updated_at DESC')
+  end
+
+  def delete_restaurant
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to user_books_path
+  end
+
+  def cancel_reservation
+    @booking = Booking.find(params[:id])
+    @booking.status = 'canceled'
+    @booking.viewed_by_place = false
+    @booking.save
     redirect_to user_books_path
   end
 
@@ -116,7 +155,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:date, :user_comment, :number_of_people)
+    params.require(:booking).permit(:date, :user_comment, :number_of_people, :phone_number)
   end
 end
 

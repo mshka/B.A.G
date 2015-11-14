@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get 'bookings/delete_restaurant/:id',to: 'bookings#delete_restaurant', as: :delete_restaurant
 
+  get 'bookings/cancel_reservation/:id',to: 'bookings#cancel_reservation', as: :cancel_reservation
   get 'bookings/show_for_resto/:params',to: 'bookings#show_for_resto', as: :place_books
   get 'bookings/show_for_user',to: 'bookings#show_for_user', as: :user_books
   get 'bookings/oncomming_books/:params',to: 'bookings#oncomming_books', as: :oncomming_books

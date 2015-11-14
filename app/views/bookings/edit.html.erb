@@ -2,7 +2,7 @@
   <div class="col-md-4 col-md-offset-4">
     <div class="panel panel-default">
       <div class="panel-body">
-        <h2>Create a new booking for <%= @restaurant.name.titleize%></h2>
+        <h2>Edit your booking for <%= @restaurant.name.titleize%></h2>
         <%= form_for [@restaurant, @booking] do |f| %>
            <% if @booking.errors.any? %>
               <div id="error_explanation">
@@ -27,7 +27,7 @@
             <%= f.label 'Note for reservation:'%><br/>
             <%= f.text_area :user_comment, class: "form-control"%><br/><br/>
           </div>
-          <%= f.submit 'Send request', class: "btn btn-primary" %>
+          <%= f.submit 'Edit', class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

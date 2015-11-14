@@ -38,7 +38,7 @@
             on <%= request.date.to_formatted_s(:long_ordinal)%>
             for <%= pluralize(request.number_of_people , 'person') %>.
             <%= link_to  restaurant_booking_path(request.restaurant_id,request.id), class: "btn btn-md btn-align-right user-badge-blue link-tcolor" do %>Show <i class="glyphicon glyphicon-hand-right"></i><% end %>
-                <%= link_to restaurant_booking_path(request.restaurant_id, request.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-md btn-align-right user-badge-red link-tcolor" do %>Delete <i class="glyphicon glyphicon-trash"></i><% end %></p><br>
+                <%= link_to delete_restaurant_path(request.id), data: {confirm: 'Are you sure?'}, class: "btn btn-md btn-align-right user-badge-red link-tcolor" do %>Delete <i class="glyphicon glyphicon-trash"></i><% end %></p><br>
                 <hr>
               <% end %>
           <% end %>
