@@ -6,6 +6,7 @@
   </form>
   <hr>
     <% @search_result.each do |place|%>
+
         <%= link_to restaurant_path(place.id) do %>
           <div class="search_container">
           <%= image_tag place.cover_picture.url(:medium)%>

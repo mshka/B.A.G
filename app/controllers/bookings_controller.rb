@@ -50,7 +50,7 @@ class BookingsController < ApplicationController
     @booking.status = 'accepted-show-pending'
     @booking.restaurant_comment = params[:restaurant_comment]
     @booking.save
-    redirect_to restaurant_path(@booking.restaurant_id)
+    redirect_to place_books_path('updated_at DESC')
   end
 
 
@@ -59,7 +59,7 @@ class BookingsController < ApplicationController
     @booking.status = 'rejected-show-pending'
     @booking.restaurant_comment = params[:restaurant_comment]
     @booking.save
-    redirect_to restaurant_path(@booking.restaurant_id)
+    redirect_to place_books_path('updated_at DESC')
 
   end
 

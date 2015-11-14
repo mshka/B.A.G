@@ -23,13 +23,27 @@
       &:hover {
         border: 3px solid black;
         color: black;
-
       }
-
-
     }
-
   }
-
-
+  .search_container{
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    img {
+      width: 100px;
+    }
+  }
+  a {
+    color: black !important;
+    &:hover{
+      text-decoration: none !important;
+      .search_container {
+        background: #E3E3E3;
+      }
+    }
+  }
 }
+
+
