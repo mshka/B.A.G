@@ -2,83 +2,80 @@
   <div class="row">
     <div class="col-xs-9 restaurant-details">
       <div class="restaurant-main-infos">
+        <% if @all_bookings == [] and @todays_booking == nil %>
+          <h2>Your place has no booking for now..</h2>
+        <% else %>
+            <% if @todays_bookings == [] %>
 
-  <% if @all_bookings == [] and @todays_booking == nil %>
-    <h2>Your place has no booking for now..</h2>
-  <% else %>
-      <% if @todays_bookings == [] %>
+            <% else %>
+              <h2>Today's bookings:</h2><br>
+              <% @todays_bookings.each do |todays_booking| %>
+                <%= link_to "#" do %>
+                  <%= image_tag User.find(todays_booking.user_id).picture.url(:thumb) %>
+                  <%= link_to user_path(User.find(todays_booking.user_id).id) do %>
+                    <h3><%= User.find(todays_booking.user_id).first_name.titleize %>
+                    <%= User.find(todays_booking.user_id).last_name.titleize %>
+                  <% end %>
+                <% end %>
 
-      <% else %>
-        <h3>Todays booking</h3>
-        <% @todays_bookings.each do |todays_booking| %>
+                <%= distance_of_time_in_words_to_now(todays_booking.updated_at) %> ago.</h3>
+               <h3> Reservation for <%= todays_booking.number_of_people %>
+                on <%= todays_booking.date.to_formatted_s(:long_ordinal) %> </h3>
+                <p><%= todays_booking.user_comment %></p>
+                <hr>
+
+              <% end %>
+            <% end %>
+          <h1>All Reservations:</h1>
+          <div id="title-review">
+            <% if params[:params] == 'date DESC' %>
+              <%= link_to oncomming_books_path('date ASC') do %>
+                <button class="btn btn-primary  btn-align-right">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
+              <% end %>
+            <% elsif params[:params] == 'date ASC' %>
+              <%= link_to oncomming_books_path('date DESC') do %>
+                <button class="btn btn-primary  btn-align-right">booking time <i class="fa fa-chevron-up fa-1x"></i></button>
+              <% end %>
+            <% else %>
+              <%= link_to oncomming_books_path('date ASC') do %>
+                <button class="btn btn-default  btn-align-right">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
+              <% end %>
+            <% end %>
+
+            <% if params[:params] == 'updated_at DESC' %>
+              <%= link_to oncomming_books_path('updated_at ASC') do %>
+                <button class="btn btn-primary  btn-align-right">post time <i class="fa fa-chevron-down "></i></button>
+              <% end %>
+            <% elsif params[:params] == 'updated_at ASC'%>
+              <%= link_to oncomming_books_path('updated_at DESC') do %>
+                <button class="btn btn-primary  btn-align-right">post time <i class="fa fa-chevron-up "></i></button>
+              <% end %>
+            <% else %>
+              <%= link_to oncomming_books_path('updated_at ASC') do %>
+                <button class="btn btn-default  btn-align-right">post time <i class="fa fa-chevron-up "></i></button>
+              <% end %>
+            <% end %>
+          </div>
+
+          <br><br>
+
+          <% @all_bookings.each do |booking| %>
           <%= link_to "#" do %>
-            <%= image_tag User.find(todays_booking.user_id).picture.url(:thumb) %>
-            <%= link_to user_path(User.find(todays_booking.user_id).id) do %>
-              <%= User.find(todays_booking.user_id).first_name.titleize %>
-              <%= User.find(todays_booking.user_id).last_name.titleize %>
+            <%= image_tag User.find(booking.user_id).picture.url(:thumb) %>
+            <%= link_to user_path(User.find(booking.user_id).id) do %>
+              <h3><%= User.find(booking.user_id).first_name.titleize %>
+              <%= User.find(booking.user_id).last_name.titleize %>
             <% end %>
           <% end %>
 
-          <%= distance_of_time_in_words_to_now(todays_booking.updated_at) %>
-          <br/>
-          Reservation for <%= todays_booking.number_of_people %><br/>
-          on <%= todays_booking.date.to_formatted_s(:long_ordinal) %> <br/>
-          <%= todays_booking.user_comment %><br>
+          <%= distance_of_time_in_words_to_now(booking.updated_at) %>ago </h3>
 
-          <br/><br/>
+          <h3>Reservation for <%= booking.number_of_people %>
+          on <%= booking.date.to_formatted_s(:long_ordinal) %></h3>
+          <p><%= booking.user_comment %></p>
+          <hr>
           <% end %>
-    <% end %>
-
-    <h1>Reservations:</h1>
-    <div id="title-review">
-    <% if params[:params] == 'date DESC' %>
-      <%= link_to oncomming_books_path('date ASC') do %>
-        <button class="btn btn-primary  btn-align-right">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
-      <% end %>
-    <% elsif params[:params] == 'date ASC' %>
-      <%= link_to oncomming_books_path('date DESC') do %>
-        <button class="btn btn-primary  btn-align-right">booking time <i class="fa fa-chevron-up fa-1x"></i></button>
-      <% end %>
-    <% else %>
-      <%= link_to oncomming_books_path('date ASC') do %>
-        <button class="btn btn-default  btn-align-right">booking time <i class="fa fa-chevron-down  fa-1x"></i></button>
-      <% end %>
-    <% end %>
-
-    <% if params[:params] == 'updated_at DESC' %>
-      <%= link_to oncomming_books_path('updated_at ASC') do %>
-        <button class="btn btn-primary  btn-align-right">post time <i class="fa fa-chevron-down "></i></button>
-      <% end %>
-    <% elsif params[:params] == 'updated_at ASC'%>
-      <%= link_to oncomming_books_path('updated_at DESC') do %>
-        <button class="btn btn-primary  btn-align-right">post time <i class="fa fa-chevron-up "></i></button>
-      <% end %>
-    <% else %>
-      <%= link_to oncomming_books_path('updated_at ASC') do %>
-        <button class="btn btn-default  btn-align-right">post time <i class="fa fa-chevron-up "></i></button>
-      <% end %>
-    <% end %>
-    </div>
-
-    <br><br>
-    <% @all_bookings.each do |booking| %>
-    <%= link_to "#" do %>
-      <%= image_tag User.find(booking.user_id).picture.url(:thumb) %>
-      <%= link_to user_path(User.find(booking.user_id).id) do %>
-        <%= User.find(booking.user_id).first_name.titleize %>
-        <%= User.find(booking.user_id).last_name.titleize %>
-      <% end %>
-    <% end %>
-
-    <%= distance_of_time_in_words_to_now(booking.updated_at) %>
-    <br/>
-    Reservation for <%= booking.number_of_people %><br/>
-    on <%= booking.date.to_formatted_s(:long_ordinal) %> <br/>
-    <%= booking.user_comment %><br>
-
-    <br/><br/>
-    <% end %>
-  <% end %>
+        <% end %>
       </div>
     </div>
   </div>
